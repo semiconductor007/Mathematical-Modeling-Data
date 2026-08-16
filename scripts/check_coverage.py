@@ -30,7 +30,17 @@ def main() -> int:
 
     candidates = read_rows(args.candidates)
     scores = read_rows(args.scores)
-    model_ids = {row.get("model_id", "").strip() for row in candidates if is_present(row.get("model_id"))}
+    final_candidates = [
+        row for row in candidates if row.get("candidate_status", "").strip().lower() == "final"
+    ]
+    active_candidates = final_candidates or [
+        row for row in candidates if row.get("candidate_status", "").strip().lower() != "excluded"
+    ]
+    model_ids = {
+        row.get("model_id", "").strip()
+        for row in active_candidates
+        if is_present(row.get("model_id"))
+    }
     by_benchmark: dict[str, set[str]] = {}
     compatible_cohorts: dict[str, dict[tuple[str, str, str], set[str]]] = {}
     for row in scores:
@@ -48,7 +58,7 @@ def main() -> int:
 
     total = len(model_ids)
     if not by_benchmark:
-        print(f"No benchmark observations found. Candidate models: {total}.")
+        print(f"No benchmark observations found. Active candidate models: {total}.")
         return 0
 
     output = []

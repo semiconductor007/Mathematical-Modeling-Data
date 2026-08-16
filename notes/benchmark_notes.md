@@ -1,5 +1,11 @@
 # Benchmark 调研记录（Member A）
 
+## Phase 1 冻结结论
+
+- 最终模型池为 6 个：Kimi K3、GPT-5.6 Sol、Claude Fable 5、Claude Opus 4.8、GPT-5.5、GLM-5.2。
+- 冻结 9 个核心指标；严格可比覆盖为 5/6（83.3%）或 6/6（100%），详见 `results/core_indicator_selection.csv`。
+- Gemini 3.1 Pro Preview、DeepSeek V4 Pro 0813、Qwen3.8 2.4T A95B 的原始记录继续保留，但不进入 Phase 1 最终模型池。
+
 ## 数据截面与成果
 
 - 检索日期：2026-08-16；数据截止：2026-08-17。
@@ -19,8 +25,8 @@
 | GPT-5.5 (`gpt-5.5`) | 2026-04-23 | [OpenAI 官方发布页](https://openai.com/index/introducing-gpt-5-5/) |
 | GLM-5.2 (`GLM-5.2`) | 2026-06-16 | [Z.ai 官方发布页](https://z.ai/blog/glm-5.2) |
 | Gemini 3.1 Pro Preview | 2026-02-19 | [Google 官方模型卡](https://deepmind.google/models/model-cards/gemini-3-1-pro)、[API 型号页](https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview) |
-| DeepSeek V4 Pro 0813 | 2026-08-13 | [Artificial Analysis 独立模型页](https://artificialanalysis.ai/models/deepseek-v4-pro)；官方精确版本仍待 Member B 复核 |
-| Qwen3.8 2.4T A95B | 2026-08-12 | [Artificial Analysis 独立模型页](https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b)；官方精确版本仍待 Member B 复核 |
+| DeepSeek V4 Pro 0813 | 2026-08-13 | [Artificial Analysis 独立模型页](https://artificialanalysis.ai/models/deepseek-v4-pro)；身份核验细节见 `metadata_sources.csv` |
+| Qwen3.8 2.4T A95B | 2026-08-12 | [Artificial Analysis 独立模型页](https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b)；身份核验细节见 `metadata_sources.csv` |
 
 ## 指标池与当前建议
 
@@ -50,12 +56,7 @@
 
 ## 覆盖率结论
 
-当前 9 模型候选池中，最佳单一可比队列最多覆盖 6/9（66.7%），因此**尚无指标可以直接冻结为正式核心指标**。这不是数据失败，而是两款截止日前刚发布模型只有综合指数、分项尚未可靠导出造成的。
-
-下一轮有两个合规路径：
-
-1. 从 Artificial Analysis 的固定日期导出/API 补齐 DeepSeek V4 Pro 0813、Qwen3.8 2.4T A95B 及 Gemini/GLM 的九个分项；或
-2. 团队基于“发布时间过近、分项覆盖不足”将两款新模型移出最终池，再重新计算覆盖率。若最终池为原先 7 个模型，GPQA、AA-LCR、SciCode、GDPval-AA v2 的最佳队列可达 6/7（85.7%）。
+团队已采用第二条合规路径：将 preview 或距离截止日过近且分项稀疏的 Gemini、DeepSeek、Qwen 移出最终池。覆盖率分母因此按 6 个 `final` 模型计算；9 个冻结指标均达到 75% 门槛，未以插值或跨设置拼接补足覆盖。
 
 ## 数据源等级
 

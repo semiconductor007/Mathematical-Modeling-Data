@@ -25,24 +25,22 @@
 
 ## 候选模型登记视图
 
-权威数据表为 `data/model_candidates.csv`。下表是 2026-08-16 的 Member A 候选池快照；`likely` 不是最终入选。
+权威数据表为 `data/model_candidates.csv`。下表是 Phase 1 冻结结果。
 
 | ID | Provider | Model | Version | Release Date | Benchmark Coverage | Pricing Available | Candidate Status | Notes |
 |---|---|---|---|---|---|---|---|---|
-| kimi-k3 | Moonshot AI | Kimi K3 | kimi-k3 | 2026-07-16 | 17/24 raw | 待 Member B | likely | 题目要求必选；Kimi 官方比较矩阵锚点 |
-| gpt-5.6-sol | OpenAI | GPT-5.6 Sol | gpt-5.6-sol | 2026-07-09 | 23/24 raw | 待 Member B | likely | Kimi/OpenAI 两张对照矩阵均覆盖 |
-| claude-fable-5 | Anthropic | Claude Fable 5 | claude-fable-5 | 2026-06-09 | 21/24 raw | 待 Member B | likely | fallback 会影响部分评测 |
-| claude-opus-4.8 | Anthropic | Claude Opus 4.8 | claude-opus-4.8 | 2026-05-28 | 23/24 raw | 待 Member B | likely | 成熟对照数据较多 |
-| gpt-5.5 | OpenAI | GPT-5.5 | gpt-5.5 | 2026-04-23 | 23/24 raw | 待 Member B | likely | 稳定基线 |
-| glm-5.2 | Z.ai | GLM-5.2 | GLM-5.2 | 2026-06-16 | 8/24 raw | 待 Member B | likely | 国产开源代表，需补数据 |
-| gemini-3.1-pro-preview | Google | Gemini 3.1 Pro Preview | gemini-3.1-pro-preview | 2026-02-19 | 6/24 raw | 待 Member B | likely | Google 代表，仍是 preview |
-| deepseek-v4-pro-0813 | DeepSeek | DeepSeek V4 Pro 0813 | DeepSeek V4 Pro 0813 | 2026-08-13 | 1/24 raw | 待 Member B | pending | 发布距截止日仅 4 天，需补 AA 分项与官方版本证据 |
-| qwen3.8-2.4t-a95b | Alibaba | Qwen3.8 2.4T A95B | Qwen3.8 2.4T A95B | 2026-08-12 | 1/24 raw | 待 Member B | pending | 发布距截止日仅 5 天，需补 AA 分项与官方版本证据 |
+| kimi-k3 | Moonshot AI | Kimi K3 | kimi-k3 | 2026-07-16 | 17/24 raw | 是 | final | 题目要求必选；9 个核心指标均有可比数据 |
+| gpt-5.6-sol | OpenAI | GPT-5.6 Sol | gpt-5.6-sol | 2026-07-09 | 23/24 raw | 是 | final | 两张对照矩阵均覆盖 |
+| claude-fable-5 | Anthropic | Claude Fable 5 | claude-fable-5 | 2026-06-09 | 21/24 raw | 是 | final | 能力数据充分；fallback 效率记录标为不兼容 |
+| claude-opus-4.8 | Anthropic | Claude Opus 4.8 | claude-opus-4.8 | 2026-05-28 | 23/24 raw | 是 | final | 成熟对照数据较多 |
+| gpt-5.5 | OpenAI | GPT-5.5 | gpt-5.5 | 2026-04-23 | 23/24 raw | 是 | final | 稳定基线 |
+| glm-5.2 | Z.ai | GLM-5.2 | GLM-5.2 | 2026-06-16 | 8/24 raw | 是 | final | 国产开源代表；核心指标覆盖达标 |
+| gemini-3.1-pro-preview | Google | Gemini 3.1 Pro Preview | gemini-3.1-pro-preview | 2026-02-19 | 6/24 raw | 是 | excluded | preview 且严格可比核心覆盖不足 |
+| deepseek-v4-pro-0813 | DeepSeek | DeepSeek V4 Pro 0813 | DeepSeek V4 Pro 0813 | 2026-08-13 | 1/24 raw | 是 | excluded | 距截止日 4 天，分项覆盖不足 |
+| qwen3.8-2.4t-a95b | Alibaba | Qwen3.8 2.4T A95B | Qwen3.8 2.4T A95B | 2026-08-12 | 1/24 raw | 是 | excluded | 距截止日 5 天，分项覆盖不足 |
 
-## 尚待数据决定
+## Phase 1 冻结决定
 
-- DeepSeek 与 Qwen 的截止日前新版本是否因分项覆盖不足移出最终池。
-- 最终 6–8 个模型名单及排除理由。
-- 数学、代码、多模态、长文本等同类指标采用哪个版本。
-- 哪些指标达到 75% 可比覆盖并进入核心体系。
-- 是否有足够一致的效率数据进入主模型，还是仅作补充分析。
+- 最终模型为 Kimi K3、GPT-5.6 Sol、Claude Fable 5、Claude Opus 4.8、GPT-5.5、GLM-5.2。
+- 核心指标为 GPQA Diamond、HLE-Full（no tools）、AA-LCR、SciCode、GDPval-AA v2、MMMU-Pro（no tools）、OmniDocBench、CharXiv RQ（no tools）、MathVision（no tools）。逐项口径、覆盖率和理由见 `results/core_indicator_selection.csv`。
+- 效率数据进入正式 raw 层，但 `compatible` 按 exact version、provider、reasoning、fallback、部署和 workload 分项控制；不兼容记录不会进入同一横向队列。

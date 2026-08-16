@@ -4,6 +4,8 @@
 结构化记录已分别写入 `data/raw/model_metadata.csv` 与 `data/sources/metadata_sources.csv`。
 检索日期统一为 **2026-08-16**，数据截面 `DATA_CUTOFF_DATE = 2026-08-17`，所有资料均在该截面之前公开。
 
+**Phase 1 冻结说明**：9 个候选的身份、元数据与价格已逐字段核验并对齐。最终模型池采用 Kimi K3、GPT-5.6 Sol、Claude Fable 5、Claude Opus 4.8、GPT-5.5、GLM-5.2；其余 3 个候选的资料继续保留用于审计。条件价格与未披露字段保持 `NA`，不推断、不插补。
+
 ## 1. 候选模型池与 model_id 约定
 
 **本轮更新（2026-08-16 第二版）**：已与 Member A 的 `data-benchmark` 分支完全对齐。B 的候选池从原来的 8 个调整为 A 的 9 个，所有 `model_id`、`model_name`、`provider`、`exact_version`、`release_date` 均与 A 一致。
@@ -12,15 +14,15 @@
 
 | model_id | 厂商 | 模型 | 精确版本 | 发布日期 | 状态 |
 |---|---|---|---|---|---|
-| kimi-k3 | Moonshot AI | Kimi K3 | kimi-k3 | 2026-07-16 | likely |
-| gpt-5.6-sol | OpenAI | GPT-5.6 Sol | gpt-5.6-sol | 2026-07-09 | likely |
-| claude-fable-5 | Anthropic | Claude Fable 5 | claude-fable-5 | 2026-06-09 | likely |
-| claude-opus-4.8 | Anthropic | Claude Opus 4.8 | claude-opus-4.8 | 2026-05-28 | likely |
-| gpt-5.5 | OpenAI | GPT-5.5 | gpt-5.5 | 2026-04-23 | likely |
-| glm-5.2 | Z.ai | GLM-5.2 | GLM-5.2 | 2026-06-16 | likely |
-| gemini-3.1-pro-preview | Google | Gemini 3.1 Pro Preview | gemini-3.1-pro-preview | 2026-02-19 | likely |
-| deepseek-v4-pro-0813 | DeepSeek | DeepSeek V4 Pro 0813 | DeepSeek V4 Pro 0813 | 2026-08-13 | pending |
-| qwen3.8-2.4t-a95b | Alibaba | Qwen3.8 2.4T A95B | Qwen3.8 2.4T A95B | 2026-08-12 | pending |
+| kimi-k3 | Moonshot AI | Kimi K3 | kimi-k3 | 2026-07-16 | final |
+| gpt-5.6-sol | OpenAI | GPT-5.6 Sol | gpt-5.6-sol | 2026-07-09 | final |
+| claude-fable-5 | Anthropic | Claude Fable 5 | claude-fable-5 | 2026-06-09 | final |
+| claude-opus-4.8 | Anthropic | Claude Opus 4.8 | claude-opus-4.8 | 2026-05-28 | final |
+| gpt-5.5 | OpenAI | GPT-5.5 | gpt-5.5 | 2026-04-23 | final |
+| glm-5.2 | Z.ai | GLM-5.2 | GLM-5.2 | 2026-06-16 | final |
+| gemini-3.1-pro-preview | Google | Gemini 3.1 Pro Preview | gemini-3.1-pro-preview | 2026-02-19 | excluded |
+| deepseek-v4-pro-0813 | DeepSeek | DeepSeek V4 Pro 0813 | DeepSeek V4 Pro 0813 | 2026-08-13 | excluded |
+| qwen3.8-2.4t-a95b | Alibaba | Qwen3.8 2.4T A95B | Qwen3.8 2.4T A95B | 2026-08-12 | excluded |
 
 **一致性约定**：`model_id` 采用小写 kebab 形式，与 Member A 的 `model_candidates.csv` 和 `benchmark_scores.csv` 完全一致，保证三张原始表可按 `model_id` 合并（`scripts/merge_data.py`）。
 
