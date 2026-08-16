@@ -1,0 +1,9 @@
+check,value,status,notes
+final_model_count,6,pass,Target range: 6-8
+core_indicator_count,9,pass,Target range: 8-12
+core_matrix_rows,6,pass,One row per final model
+core_long_rows,54,pass,Final models x core indicators
+core_missing_scores,5,pass,Preserved as literal NA; no imputation
+core_cohorts_at_least_75_percent,9,pass,All frozen core cohorts pass
+strict_efficiency_models,4,pass,Incompatible observations retained separately
+raw_files_modified,0,pass,Processor is read-only for data/raw

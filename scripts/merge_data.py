@@ -32,12 +32,15 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=ROOT / "data/merged/model_dataset.csv")
     parser.add_argument("--force", action="store_true", help="Replace an existing output file")
+    parser.add_argument("--final-only", action="store_true", help="Write only candidate_status=final models")
     args = parser.parse_args()
     if args.output.exists() and not args.force:
         print(f"Refusing to overwrite existing file: {args.output}. Use --force after review.")
         return 2
 
     candidates = read_rows(ROOT / "data/model_candidates.csv")
+    if args.final_only:
+        candidates = [row for row in candidates if row.get("candidate_status") == "final"]
     benchmarks = grouped(read_rows(ROOT / "data/raw/benchmark_scores.csv"))
     metadata = grouped(read_rows(ROOT / "data/raw/model_metadata.csv"))
     efficiency = grouped(read_rows(ROOT / "data/raw/cost_efficiency.csv"))

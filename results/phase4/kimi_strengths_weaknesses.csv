@@ -1,0 +1,10 @@
+indicator_key,dimension,indicator,kimi_normalized_score,kimi_rank,models_compared,leader_model_id,gap_to_leader,assessment
+gpqa_diamond,high_difficulty_reasoning,GPQA Diamond,0.8064516129,3,6,gpt-5.6-sol,0.1935483871,middle
+hle_full_no_tools,high_difficulty_reasoning,HLE-Full,0.1764705882,4,5,claude-fable-5,0.8235294118,weakness
+aa_lcr,long_context,AA-LCR,1.0000000000,1,6,kimi-k3,0.0000000000,strength
+scicode,coding,SciCode,0.8453608247,2,6,claude-fable-5,0.1546391753,strength
+gdpval_aa_v2,professional_tasks,GDPval-AA v2,0.7617187500,3,6,claude-fable-5,0.2382812500,middle
+mmmu_pro_no_tools,multimodal,MMMU-Pro,0.6585365854,2,5,gpt-5.6-sol,0.3414634146,strength
+omnidocbench,document_understanding,OmniDocBench,1.0000000000,1,5,kimi-k3,0.0000000000,strength
+charxiv_rq_no_tools,research_document_reasoning,CharXiv RQ,0.5119047619,2,5,claude-fable-5,0.4880952381,strength
+mathvision_no_tools,multimodal_math,MathVision,0.8351648352,3,5,gpt-5.6-sol,0.1648351648,middle

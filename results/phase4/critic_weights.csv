@@ -1,0 +1,10 @@
+indicator_key,dimension,indicator,available_models,contrast_std,conflict_sum,information_content,critic_weight
+gpqa_diamond,high_difficulty_reasoning,GPQA Diamond,6,0.3811141634,4.5552898098,1.7360854649,0.1039085788
+hle_full_no_tools,high_difficulty_reasoning,HLE-Full,5,0.3684852390,9.1281569558,3.3635910976,0.2013184129
+aa_lcr,long_context,AA-LCR,6,0.3615678256,5.8671269026,2.1213643167,0.1269683755
+scicode,coding,SciCode,6,0.3295611479,3.4152476426,1.1255329333,0.0673656510
+gdpval_aa_v2,professional_tasks,GDPval-AA v2,6,0.4005980577,4.8680805476,1.9501436122,0.1167204353
+mmmu_pro_no_tools,multimodal,MMMU-Pro,5,0.3215074547,4.4953723914,1.4452957355,0.0865041663
+omnidocbench,document_understanding,OmniDocBench,5,0.3423371602,7.2359263470,2.4771264767,0.1482615325
+charxiv_rq_no_tools,research_document_reasoning,CharXiv RQ,5,0.3176051257,3.8588246446,1.2255824863,0.0733538394
+mathvision_no_tools,multimodal_math,MathVision,5,0.3571411665,3.5366809451,1.2630943583,0.0755990084

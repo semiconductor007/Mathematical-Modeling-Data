@@ -41,9 +41,9 @@
 
 冻结提交前执行：数据结构与语义校验、最终池覆盖率重算、效率采集器 dry-run、单元测试、合并脚本 smoke test、`git diff --check`。最终结果以提交前命令输出为准；任何失败均阻止推送 `main`。
 
-## Phase 2 遗留限制（非 Phase 1 阻塞项）
+## 后续建模限制
 
 - 对存在多个权威快照的 Benchmark，Phase 2 必须固定 cohort 后再建模。
 - 效率是滚动观测，不能解释为永久稳定的模型属性。
 - `compatible=false` 的效率记录只用于个案或局限分析。
-- processed 与 merged 层仍为空，符合 Phase 2 尚未开始的阶段边界。
+- processed 与 merged 层已由 Phase 2 脚本生成；后续模型只读取经校验的冻结 cohort。
