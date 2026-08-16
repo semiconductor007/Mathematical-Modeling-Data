@@ -1,8 +1,8 @@
 # 工程效率与专项数据记录
 
-> **阶段状态：NOT FOR MODELING / REVIEW ONLY / NOT RAW DATA**
+> **阶段状态：PHASE 1 PROMOTED TO RAW**
 >
-> 本轮结果仅写入 `results/efficiency_staging.csv`。在 A 的候选模型表进入 `main`、团队冻结配置并完成人工复核以前，不写入正式效率 raw 表。
+> 27 条 staging 记录已逐项复核并提升为 `data/raw/cost_efficiency.csv` 的 9 条模型级记录，逐指标证据写入 `data/sources/efficiency_sources.csv`。staging 文件保留采集哈希和完整溯源，不作为正式建模输入。
 
 ## 数据来源
 
@@ -52,7 +52,7 @@ E2E：9/9 有数值；0/9 已冻结；9/9 需人工复核
 完全缺失模型：0
 ```
 
-所有 27 行均由相应 provider 的公开页面直接支持，`http_status=200`，没有空字符串、`0` 代替缺失、插值、OCR 或自行 Benchmark。所有行暂为 `candidate_compatible=false`、`manual_review_required=true`。
+所有 27 行均由相应 provider 的公开页面直接支持，`http_status=200`，没有空字符串、`0` 代替缺失、插值、OCR 或自行 Benchmark。正式 raw 按统一 workload 和配置政策逐模型标记 `compatible`，而不是默认放行。
 
 ## 数据限制
 
@@ -60,12 +60,12 @@ E2E：9/9 有数值；0/9 已冻结；9/9 需人工复核
 - 滚动 72 小时 P50 没有唯一单日 `measurement_date`，后续正式 raw 中应使用 `NA`，并在 `test_setting` 保留统计窗口。
 - staging 保存的是公开 HTML 结构化字段的完整精度；网页界面可能对显示值做四舍五入，人工复核时需决定正式 raw 的保留精度。
 - 500-token E2E 只是题目“完整回答耗时”的标准化代理变量，论文必须说明定义差异。
-- provider、reasoning effort、fallback 与量化策略尚未冻结，当前 staging 不代表最终核心可比队列。
-- 正式入库前必须重新核对来源页面、配置、provider、哈希和可比性，并等待 A 候选模型表进入 `main`。
+- provider、reasoning effort、fallback 与量化策略已按下述配置规则冻结；`compatible=false` 的记录只作补充分析。
+- 正式 raw 已复核来源页面、配置、provider、哈希和模型身份。
 
 ## Phase 2.5 配置复核结论
 
-配置级复核表见 `results/efficiency_configuration_review.csv`。该表仍是 **REVIEW ONLY / NOT RAW DATA / NOT FOR FINAL MODELING YET**。
+配置级历史复核表见 `results/efficiency_configuration_review.csv`；最终决定以正式 raw 的 `compatible` 字段和本文件的冻结规则为准。
 
 | 队列 | 模型 | 冻结条件 |
 |---|---|---|
@@ -79,7 +79,7 @@ E2E：9/9 有数值；0/9 已冻结；9/9 需人工复核
 | Hold | `claude-fable-5` | fallback 可能改变实际执行模型；现有页面不能分离 Fable 与 Opus 4.8 观测 |
 | Hold | `glm-5.2` | Together AI 为第三方部署，具体精度/量化未披露；同页存在 FP4、FP8、NVFP4 变体 |
 
-严格 Core Set A 覆盖为 `4/9 = 44.4%`。若团队以书面规则接受上述三个 CONDITIONAL 配置，最大合理覆盖为 `7/9 = 77.8%`，可以在不把 HOLD 降级放行的前提下达到 75%。Claude Fable 5 与 GLM-5.2 不计入这一路径。
+团队接受 Kimi 的“AA default reasoning configuration”作为命名配置，但不猜测 effort；Claude Fable 5 因 Opus fallback、GLM-5.2 因第三方部署与量化未知而保持 `compatible=false`。效率指标在 Phase 2/6 建模时须按兼容队列单独做缺失处理，不能以候选覆盖率代替配置可比性。
 
 ## Core Efficiency Configuration Proposal
 
@@ -106,12 +106,6 @@ E2E：9/9 有数值；0/9 已冻结；9/9 需人工复核
 - `test_setting/notes` 保留：`P50 over rolling past 72 hours, retrieved 2026-08-16`。
 - 若未来来源明确给出单次测量日期，才填写对应 `measurement_date`；不得用 retrieval date 自动代替。
 
-## Phase 3 前置依赖
+## Phase 2/6 使用约束
 
-截至本轮 fetch，`origin/main:data/model_candidates.csv` 仍只有表头，而 `origin/data-benchmark` 有 9 个候选。因此：
-
-```text
-A candidate dependency unresolved
-```
-
-在 A 候选表经正常团队流程进入公共基线前，不写正式效率 raw。B 元数据审计结果见 `notes/data_audit.md`；B 的完成状态本身不自动阻塞 C 效率 raw，但 B 与 A 的模型身份目前明显不一致，合并前必须处理。
+候选表、元数据表和效率表的 `model_id` 已对齐。后续只允许 `candidate_status=final` 且相应数据行 `compatible=true` 的效率记录进入严格横向分析；Fable 与 GLM 的数值可用于个案说明，不进入该队列。

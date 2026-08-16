@@ -34,7 +34,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG = Path(__file__).with_name("artificial_analysis_targets.json")
 DEFAULT_OUTPUT = ROOT / "results/efficiency_staging.csv"
-DEFAULT_CANDIDATE_REF = "origin/data-benchmark"
+DEFAULT_CANDIDATE_REF = "HEAD"
 USER_AGENT = "TJMML-Member-C-Efficiency-Collector/1.0 (academic research)"
 SOURCE_NAME = "Artificial Analysis API Provider Performance Benchmarking"
 SOURCE_TYPE = "independent_evaluation"
