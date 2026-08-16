@@ -1,0 +1,10 @@
+indicator_key,dimension,indicator,available_models,missing_models,mean,sample_std,coefficient_of_variation,minimum,maximum,range
+gpqa_diamond,high_difficulty_reasoning,GPQA Diamond,6,0,92.650000,1.294218,0.013969,91.000000,94.100000,3.100000
+hle_full_no_tools,high_difficulty_reasoning,HLE-Full,5,1,46.500000,4.902550,0.105431,41.400000,53.300000,11.900000
+aa_lcr,long_context,AA-LCR,6,0,71.950000,2.772544,0.038534,67.700000,74.700000,7.000000
+scicode,coding,SciCode,6,0,55.850000,3.501857,0.062701,50.500000,60.200000,9.700000
+gdpval_aa_v2,professional_tasks,GDPval-AA v2,6,0,1627.166667,112.341295,0.069041,1491.000000,1747.000000,256.000000
+mmmu_pro_no_tools,multimodal,MMMU-Pro,5,1,81.180000,1.473771,0.018154,78.900000,83.000000,4.100000
+omnidocbench,document_understanding,OmniDocBench,5,1,88.800000,2.028546,0.022844,85.800000,91.100000,5.300000
+charxiv_rq_no_tools,research_document_reasoning,CharXiv RQ,5,1,84.580000,2.982784,0.035266,80.500000,88.900000,8.400000
+mathvision_no_tools,multimodal_math,MathVision,5,1,92.760000,3.633593,0.039172,86.700000,95.800000,9.100000

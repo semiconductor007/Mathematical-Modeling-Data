@@ -1,0 +1,19 @@
+scenario,model_id,model_name,scenario_score,scenario_rank,general_rank,rank_change_vs_general,ranking_status
+research_long_text,kimi-k3,Kimi K3,0.6546699731,1,2,1,ranked_complete_case
+research_long_text,claude-fable-5,Claude Fable 5,0.6470796358,2,1,-1,ranked_complete_case
+research_long_text,gpt-5.6-sol,GPT-5.6 Sol,0.5703279480,3,3,0,ranked_complete_case
+research_long_text,gpt-5.5,GPT-5.5,0.5275665754,4,4,0,ranked_complete_case
+research_long_text,claude-opus-4.8,Claude Opus 4.8,0.3147246059,5,5,0,ranked_complete_case
+research_long_text,glm-5.2,GLM-5.2,NA,NA,NA,NA,not_ranked_insufficient_coverage
+daily_dialogue,claude-fable-5,Claude Fable 5,0.7208273991,1,1,0,ranked_complete_case
+daily_dialogue,kimi-k3,Kimi K3,0.6342725548,2,2,0,ranked_complete_case
+daily_dialogue,gpt-5.6-sol,GPT-5.6 Sol,0.6023779374,3,3,0,ranked_complete_case
+daily_dialogue,gpt-5.5,GPT-5.5,0.4391658605,4,4,0,ranked_complete_case
+daily_dialogue,claude-opus-4.8,Claude Opus 4.8,0.3430603163,5,5,0,ranked_complete_case
+daily_dialogue,glm-5.2,GLM-5.2,NA,NA,NA,NA,not_ranked_insufficient_coverage
+code_development,claude-fable-5,Claude Fable 5,0.7722288122,1,1,0,ranked_complete_case
+code_development,kimi-k3,Kimi K3,0.6840234806,2,2,0,ranked_complete_case
+code_development,gpt-5.6-sol,GPT-5.6 Sol,0.5838464654,3,3,0,ranked_complete_case
+code_development,gpt-5.5,GPT-5.5,0.4896190898,4,4,0,ranked_complete_case
+code_development,claude-opus-4.8,Claude Opus 4.8,0.3383686625,5,5,0,ranked_complete_case
+code_development,glm-5.2,GLM-5.2,NA,NA,NA,NA,not_ranked_insufficient_coverage

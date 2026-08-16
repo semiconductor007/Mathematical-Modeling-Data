@@ -6,19 +6,19 @@
 
 ## 1. 候选模型精确版本
 
-候选池（9 个，与 Member A 的 `data-benchmark` 分支完全对齐）：
+候选池共 9 个；Phase 1 最终冻结 6 个：
 
 | model_id | 厂商 | 模型 | 精确版本 / slug | 发布日期 | 状态 |
 |---|---|---|---|---|---|
-| kimi-k3 | Moonshot AI | Kimi K3 | kimi-k3 | 2026-07-16 | likely（题目指定必选）|
-| gpt-5.6-sol | OpenAI | GPT-5.6 Sol | gpt-5.6-sol | 2026-07-09 | likely |
-| claude-fable-5 | Anthropic | Claude Fable 5 | claude-fable-5 | 2026-06-09 | likely |
-| claude-opus-4.8 | Anthropic | Claude Opus 4.8 | claude-opus-4.8 | 2026-05-28 | likely |
-| gpt-5.5 | OpenAI | GPT-5.5 | gpt-5.5 | 2026-04-23 | likely |
-| glm-5.2 | Z.ai | GLM-5.2 | GLM-5.2 | 2026-06-16 | likely |
-| gemini-3.1-pro-preview | Google | Gemini 3.1 Pro Preview | gemini-3.1-pro-preview | 2026-02-19 | likely |
-| deepseek-v4-pro-0813 | DeepSeek | DeepSeek V4 Pro 0813 | DeepSeek V4 Pro 0813 | 2026-08-13 | pending |
-| qwen3.8-2.4t-a95b | Alibaba | Qwen3.8 2.4T A95B | Qwen3.8 2.4T A95B | 2026-08-12 | pending |
+| kimi-k3 | Moonshot AI | Kimi K3 | kimi-k3 | 2026-07-16 | final（题目指定必选）|
+| gpt-5.6-sol | OpenAI | GPT-5.6 Sol | gpt-5.6-sol | 2026-07-09 | final |
+| claude-fable-5 | Anthropic | Claude Fable 5 | claude-fable-5 | 2026-06-09 | final |
+| claude-opus-4.8 | Anthropic | Claude Opus 4.8 | claude-opus-4.8 | 2026-05-28 | final |
+| gpt-5.5 | OpenAI | GPT-5.5 | gpt-5.5 | 2026-04-23 | final |
+| glm-5.2 | Z.ai | GLM-5.2 | GLM-5.2 | 2026-06-16 | final |
+| gemini-3.1-pro-preview | Google | Gemini 3.1 Pro Preview | gemini-3.1-pro-preview | 2026-02-19 | excluded |
+| deepseek-v4-pro-0813 | DeepSeek | DeepSeek V4 Pro 0813 | DeepSeek V4 Pro 0813 | 2026-08-13 | excluded |
+| qwen3.8-2.4t-a95b | Alibaba | Qwen3.8 2.4T A95B | Qwen3.8 2.4T A95B | 2026-08-12 | excluded |
 
 > 候选池覆盖国内外厂商（国内：Moonshot / DeepSeek / Alibaba / Z.ai；国外：OpenAI / Anthropic / Google），兼顾前沿与高性价比档位，便于后续"性能—成本"分析。所有 `model_id`、`model_name`、`provider`、`exact_version`、`release_date` 均与 Member A 的 `model_candidates.csv` 严格一致，保证三张原始表可按 `model_id` 合并。
 
@@ -80,11 +80,11 @@
 | DeepSeek V4 Pro 0813 | https://api-docs.deepseek.com/quick_start/pricing |
 | Qwen3.8 2.4T A95B | https://qwen.ai/blog?id=qwen3.8 （价格见 Global Times 发布报道 https://www.globaltimes.cn/page/202608/1367420.shtml ）|
 
-**来源优先级**：厂商官方文档/模型卡（Level C）＞ Benchmark 官方/统一评测（Level B）＞ 独立第三方横向评测（Level A）＞ 二手资料（Level D，仅辅助）。本章节价格均取自官方页或官方发布报道，未采用搜索摘要或截图作为核心依据。
+**来源优先级**：统一独立第三方横向评测（Level A）＞ Benchmark 官方榜单（Level B）＞ 厂商官方文档/模型卡（Level C）＞ 二手资料（Level D，仅辅助）。元数据和价格优先采用对应厂商官方页，未采用搜索摘要或截图作为核心依据。
 
 ## 5. 数据质量与待确认项
 
 - 缺失统一记 `NA`，未插补、未估算。
 - **待确认**：GLM-5.2 最大输出 128K vs 262K 冲突；Kimi K3 最大输出（单一二级来源）；OpenAI GPT-5.6 Sol >270K 长上下文具体费率。
-- **Claude Fable 5 fallback 风险**：AA 明示 Opus 4.8 Fallback，C 审计标记 HOLD（fallback 路由频率未披露，模型身份可能混合）。数据保留但需团队裁定是否进入核心模型。
+- **Claude Fable 5 fallback 风险**：AA 明示 Opus 4.8 Fallback，因此效率记录保留但标记 `compatible=false`；该限制不影响固定 cohort 的能力成绩。
 - `model_id` 已与 Member A 完全对齐（本轮修正 4 个 ID、6 个 exact_version、4 个 release_date、2 个 provider、3 个 model_name；新增 2 个模型；移除 1 个不在候选池中的模型）。

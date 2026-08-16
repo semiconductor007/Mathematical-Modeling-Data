@@ -24,6 +24,13 @@ SOURCE_FILES = {
     "efficiency_sources": ROOT / "data/sources/efficiency_sources.csv",
 }
 CORE_SELECTION = ROOT / "results/core_indicator_selection.csv"
+PROCESSED_FILES = {
+    "core_matrix": ROOT / "data/processed/core_benchmark_matrix.csv",
+    "core_long": ROOT / "data/processed/core_benchmark_long.csv",
+    "model_attributes": ROOT / "data/processed/model_attributes.csv",
+    "indicator_quality": ROOT / "data/processed/indicator_quality.csv",
+    "quality_report": ROOT / "data/processed/phase2_quality_report.csv",
+}
 
 
 def missing(value: str | None) -> bool:
@@ -62,7 +69,7 @@ def date_or_na(value: str | None) -> bool:
 
 def main() -> int:
     issues: list[str] = []
-    for label, path in (FILES | SOURCE_FILES).items():
+    for label, path in (FILES | SOURCE_FILES | PROCESSED_FILES).items():
         if not path.exists():
             issues.append(f"{label}: missing file {path}")
     if not CORE_SELECTION.exists():
@@ -77,6 +84,7 @@ def main() -> int:
     _, efficiency = read_csv(FILES["efficiency"])
     source_tables = {label: read_csv(path)[1] for label, path in SOURCE_FILES.items()}
     _, core_selection = read_csv(CORE_SELECTION)
+    processed = {label: read_csv(path)[1] for label, path in PROCESSED_FILES.items()}
 
     candidate_ids = {r.get("model_id", "").strip() for r in candidates if not missing(r.get("model_id"))}
     if len(candidate_ids) != len([r for r in candidates if not missing(r.get("model_id"))]):
@@ -177,6 +185,52 @@ def main() -> int:
         if row.get("status") != "core":
             issues.append(f"core_selection:{line}: status must be core")
 
+    core_keys = {row["indicator_key"] for row in processed["core_long"]}
+    if len(processed["core_matrix"]) != len(final_ids):
+        issues.append("core_matrix: must contain one row per final model")
+    if len(processed["core_long"]) != len(final_ids) * len(core_selection):
+        issues.append("core_long: must contain final_models x core_indicators rows")
+    if {row["model_id"] for row in processed["core_matrix"]} != final_ids:
+        issues.append("core_matrix: model ids do not match final pool")
+    if len(core_keys) != len(core_selection):
+        issues.append("core_long: indicator count does not match core selection")
+    if len(processed["indicator_quality"]) != len(core_selection):
+        issues.append("indicator_quality: must contain one row per core indicator")
+    for line, row in enumerate(processed["indicator_quality"], start=2):
+        try:
+            available = int(row.get("available_models", ""))
+            total = int(row.get("final_models", ""))
+            coverage = float(row.get("coverage_percent", ""))
+        except ValueError:
+            issues.append(f"indicator_quality:{line}: invalid coverage fields")
+            continue
+        if total != len(final_ids) or abs(coverage - available / total * 100) > 0.11:
+            issues.append(f"indicator_quality:{line}: inaccurate coverage")
+        if coverage < 75 or row.get("cohort_status") != "pass":
+            issues.append(f"indicator_quality:{line}: frozen cohort must pass 75%")
+    if len({(row["model_id"], row["indicator_key"]) for row in processed["core_long"]}) != len(processed["core_long"]):
+        issues.append("core_long: duplicate model/indicator row")
+    for line, row in enumerate(processed["core_long"], start=2):
+        if not numeric_or_na(row.get("score")):
+            issues.append(f"core_long:{line}: score must be numeric or literal NA")
+        if row.get("score") == "NA" and missing(row.get("missing_reason")):
+            issues.append(f"core_long:{line}: missing score requires a reason")
+    if len(processed["model_attributes"]) != len(final_ids):
+        issues.append("model_attributes: must contain one row per final model")
+    for line, row in enumerate(processed["model_attributes"], start=2):
+        if row.get("model_id") not in final_ids:
+            issues.append(f"model_attributes:{line}: model is not final")
+        if row.get("efficiency_compatible") == "false":
+            comparable = (
+                row.get("comparable_ttft_seconds"),
+                row.get("comparable_output_speed_tokens_per_second"),
+                row.get("comparable_total_latency_seconds"),
+            )
+            if any(value != "NA" for value in comparable):
+                issues.append(f"model_attributes:{line}: incompatible efficiency must be NA in comparable fields")
+    if any(row.get("status") != "pass" for row in processed["quality_report"]):
+        issues.append("quality_report: all Phase 2 checks must pass")
+
     for label, keys in (("benchmark", benchmark_keys), ("metadata", metadata_keys), ("efficiency", efficiency_keys)):
         for key, count in Counter(keys).items():
             if count > 1:
@@ -185,7 +239,7 @@ def main() -> int:
         if len(model_versions) > 1:
             issues.append(f"version mix: {model_name} has versions {sorted(model_versions)}")
 
-    row_count = len(candidates) + len(benchmarks) + len(metadata) + len(efficiency) + sum(map(len, source_tables.values())) + len(core_selection)
+    row_count = len(candidates) + len(benchmarks) + len(metadata) + len(efficiency) + sum(map(len, source_tables.values())) + len(core_selection) + sum(map(len, processed.values()))
     if issues:
         print(f"Validation completed: {len(issues)} issue(s) across {row_count} row(s).")
         print("\n".join(f"- {item}" for item in issues))

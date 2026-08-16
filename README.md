@@ -4,7 +4,7 @@
 
 ## 当前阶段
 
-**Phase 1：模型筛选与数据收集已完成。** 已从 9 个候选模型中冻结 6 个最终模型，并冻结 9 个核心能力指标；三类原始数据、逐字段来源、覆盖率结果和数据审计均已入库。下一阶段为 Phase 2 清洗与一致性检查；尚未执行 CRITIC、TOPSIS 或排名建模。
+**Phase 1–8 已全部完成。** 仓库包含可追溯原始数据、清洗数据、相关性与指标筛选、CRITIC–TOPSIS 通用评价、三类场景排名、性能—成本模型、稳健性分析、图表及完整建模报告。GLM-5.2 因核心成绩覆盖不足未被插补或强行排名。
 
 ## 题目目标
 
@@ -54,7 +54,7 @@ paper/                       论文材料
 - 每个有效数字必须有支持该数字的 `source_url`。搜索摘要、转载或无法核验的截图不能作为核心数据来源。
 - 缺失值统一写 `NA`，不得插补、猜测或从图表肉眼估算。完整规范见 [DATA_RULES.md](DATA_RULES.md)。
 
-## 后续建模路线
+## 建模路线
 
 公开数据 → 清洗与一致性检查 → 相关性分析与指标筛选 → CRITIC 客观赋权 → TOPSIS 通用评价 → AHP/组合赋权的场景化评价 → 性能—成本与 Pareto 前沿 → 敏感性和稳健性分析 → 论文整理。路线和阶段门槛见 [PROJECT_PLAN.md](PROJECT_PLAN.md)。
 
@@ -63,7 +63,10 @@ paper/                       论文材料
 ```bash
 python scripts/validate_data.py
 python scripts/check_coverage.py
-python scripts/merge_data.py
+python scripts/process_phase2_data.py
+python scripts/merge_data.py --final-only
+python scripts/run_pipeline.py
+python -m unittest discover -s tests -v
 ```
 
-三份脚本均使用 Python 标准库，且在只有表头、没有数据时安全运行。合并脚本不会删除 `NA` 或自行补值。
+全部脚本仅使用 Python 标准库。`run_pipeline.py` 可重建 Phase 2–7 结果和 SVG 图表，并执行跨阶段校验；任何脚本都不会删除 `NA` 或自行补值。完整报告见 `paper/modeling_report.md`。
