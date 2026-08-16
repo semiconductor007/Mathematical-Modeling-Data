@@ -1,1 +1,9 @@
 model_id,provider,model_name,exact_version,release_date,candidate_status,benchmark_coverage,pricing_available,notes
+kimi-k3,Moonshot AI,Kimi K3,Kimi K3,2026-07-16,likely,NA,yes,题目指定必须进入候选池；2.8T MoE (104B active)；元数据与价格见 model_metadata.csv
+gpt-5.6-sol,OpenAI,GPT-5.6 Sol,GPT-5.6 Sol,NA,likely,NA,yes,OpenAI 旗舰前沿模型；发布日期待核验
+claude-opus-4-8,Anthropic,Claude Opus 4.8,Claude Opus 4.8 (claude-opus-4-8),2026-05-28,likely,NA,yes,Anthropic 推荐默认旗舰
+gemini-3.1-pro,Google,Gemini 3.1 Pro,Gemini 3.1 Pro Preview (gemini-3.1-pro-preview),NA,likely,NA,yes,Google 旗舰；按 prompt 长度分档定价；发布日期待核验
+deepseek-v4-pro,DeepSeek,DeepSeek V4 Pro,DeepSeek-V4-Pro-0813,2026-08-13,likely,NA,yes,国内低成本旗舰；文本-only；峰谷计费
+qwen3.8-max,Alibaba (Qwen Team / QwenCloud / DashScope),Qwen3.8-Max,Qwen3.8-Max,2026-08-03,likely,NA,yes,阿里通义千问旗舰；海外 $2/$6，国内 ¥12/¥36
+glm-5.2,Zhipu AI,GLM-5.2,GLM-5.2,NA,likely,NA,yes,智谱旗舰；官方 CNY 定价已折算 USD（汇率 7.10）；发布日期待核验
+grok-4.6,xAI,Grok 4.6,Grok 4.6 (grok-4.6),2026-08-12,likely,NA,yes,xAI 前沿模型；500K 上下文；长上下文分档

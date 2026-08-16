@@ -1,1 +1,72 @@
-model_id,field,value,source_name,source_url,publication_date,retrieval_date,notes
+﻿model_id,field,value,source_name,source_url,publication_date,retrieval_date,notes
+kimi-k3,"provider, exact_version, release_date",Moonshot AI; Kimi K3; 2026-07-16,Kimi K3 official blog,https://www.kimi.com/blog/kimi-k3,2026-07-16,2026-08-16,Launch date 2026-07-16; weights released 2026-07-27.
+kimi-k3,context_window,1048576,Kimi K3 official blog,https://www.kimi.com/blog/kimi-k3,2026-07-16,2026-08-16,"1,048,576-token context window per Hugging Face model card cited in blog."
+kimi-k3,max_output_tokens,33000,Swfte AI Model Directory (secondary),https://www.swfte.com/zh/ai/models/moonshot-kimi-k3,2026-08-16,2026-08-16,"33K max output from secondary aggregator; official blog did not state it - single source, flagged."
+kimi-k3,vision_support,yes,Kimi K3 official blog,https://www.kimi.com/blog/kimi-k3,2026-07-16,2026-08-16,"Native multimodal: text, image, video input."
+kimi-k3,reasoning_support,yes,Kimi K3 official blog,https://www.kimi.com/blog/kimi-k3,2026-07-16,2026-08-16,Always-on thinking; effort low/high/max (max default).
+kimi-k3,api_available,yes,Kimi API Platform,https://platform.kimi.ai/,2026-07-16,2026-08-16,"Available via Kimi API, OpenRouter, GitHub Copilot (Fireworks), Perplexity."
+kimi-k3,input/output/cached input price,3.00 / 15.00 / 0.30 USD per 1M,Kimi K3 official blog,https://www.kimi.com/blog/kimi-k3,2026-07-16,2026-08-16,"Standard API: input $3, cached input $0.30, output $15 per 1M tokens."
+kimi-k3,batch / long-context / peak-offpeak price,NA,Kimi K3 official blog,https://www.kimi.com/blog/kimi-k3,2026-07-16,2026-08-16,"No batch discount, no separate long-context tier, no peak/off-peak found at retrieval."
+gpt-5.6-sol,"provider, exact_version, release_date",OpenAI; GPT-5.6 Sol; NA,OpenAI model compare,https://developers.openai.com/api/docs/models/compare/,2026-08-16,2026-08-16,Release date not confirmed in retrieved sources.
+gpt-5.6-sol,context_window,1050000,OpenAI model compare,https://developers.openai.com/api/docs/models/compare/,2026-08-16,2026-08-16,"1,050,000-token context window."
+gpt-5.6-sol,max_output_tokens,128000,OpenAI model compare,https://developers.openai.com/api/docs/models/compare/,2026-08-16,2026-08-16,"128,000 max output tokens."
+gpt-5.6-sol,vision_support,yes,OpenAI model compare,https://developers.openai.com/api/docs/models/compare/,2026-08-16,2026-08-16,Image input supported.
+gpt-5.6-sol,reasoning_support,yes,OpenAI model compare,https://developers.openai.com/api/docs/models/compare/,2026-08-16,2026-08-16,Reasoning model.
+gpt-5.6-sol,api_available,yes,OpenAI API,https://platform.openai.com/docs/pricing/,2026-08-16,2026-08-16,Generally available via OpenAI API.
+gpt-5.6-sol,input/output/cached input price,5.00 / 30.00 / 0.50 USD per 1M,OpenAI API pricing,https://platform.openai.com/docs/pricing/,2026-08-16,2026-08-16,"Standard rates for context <270K: input $5, cached $0.50, output $30."
+gpt-5.6-sol,batch price,input 2.50 / output 15.00 USD per 1M,OpenAI API pricing,https://platform.openai.com/docs/pricing/,2026-08-16,2026-08-16,Batch API = 50% off standard.
+gpt-5.6-sol,long-context / peak-offpeak price,NA,OpenAI API pricing,https://platform.openai.com/docs/pricing/,2026-08-16,2026-08-16,Long-context (>270K) tier exists but exact values not captured at retrieval; no peak/off-peak. NA pending verification.
+claude-opus-4-8,"provider, exact_version, release_date",Anthropic; Claude Opus 4.8; 2026-05-28,Anthropic models overview,https://platform.claude.com/docs/zh-CN/about-claude/models,2026-08-16,2026-08-16,API ID claude-opus-4-8; released 2026-05-28 per secondary launch coverage.
+claude-opus-4-8,context_window,1000000,Anthropic models overview,https://platform.claude.com/docs/zh-CN/about-claude/models,2026-08-16,2026-08-16,"1,000,000-token context window."
+claude-opus-4-8,max_output_tokens,128000,Anthropic models overview,https://platform.claude.com/docs/zh-CN/about-claude/models,2026-08-16,2026-08-16,128K max output tokens.
+claude-opus-4-8,vision_support,yes,Anthropic models overview,https://platform.claude.com/docs/zh-CN/about-claude/models,2026-08-16,2026-08-16,Vision capable.
+claude-opus-4-8,reasoning_support,yes,Anthropic models overview,https://platform.claude.com/docs/zh-CN/about-claude/models,2026-08-16,2026-08-16,Adaptive thinking with effort controls.
+claude-opus-4-8,api_available,yes,Anthropic models overview,https://platform.claude.com/docs/zh-CN/about-claude/models,2026-08-16,2026-08-16,"GA on Claude API, Bedrock, Vertex, Foundry."
+claude-opus-4-8,input/output/cached input price,5.00 / 25.00 / 0.50 USD per 1M,Anthropic models overview + pricing docs,https://platform.claude.com/docs/zh-CN/about-claude/models,2026-08-16,2026-08-16,"Input $5, output $25; prompt-cache read = 10% of input = $0.50."
+claude-opus-4-8,batch price,input 2.50 / output 12.50 USD per 1M,Anthropic pricing docs,https://platform.claude.com/docs/zh-CN/about-claude/models,2026-08-16,2026-08-16,Batch API = 50% off.
+claude-opus-4-8,long-context / peak-offpeak price,NA,Anthropic models overview,https://platform.claude.com/docs/zh-CN/about-claude/models,2026-08-16,2026-08-16,1M context at standard rate (no surcharge); no peak/off-peak.
+gemini-3.1-pro,"provider, exact_version, release_date",Google; Gemini 3.1 Pro Preview; NA,Gemini API pricing,https://ai.google.dev/gemini-api/docs/pricing,2026-08-16,2026-08-16,gemini-3.1-pro-preview; release date not confirmed.
+gemini-3.1-pro,context_window,2000000,Gemini model card / secondary,https://ai.google.dev/gemini-api/docs/pricing,2026-08-16,2026-08-16,2M context per model card and secondary sources; official pricing doc prints >200K tier but not the window number.
+gemini-3.1-pro,max_output_tokens,NA,Gemini API pricing,https://ai.google.dev/gemini-api/docs/pricing,2026-08-16,2026-08-16,Max output not stated in retrieved sources.
+gemini-3.1-pro,vision_support,yes,Gemini API pricing,https://ai.google.dev/gemini-api/docs/pricing,2026-08-16,2026-08-16,Multimodal (text/image/audio).
+gemini-3.1-pro,reasoning_support,yes,Gemini API pricing,https://ai.google.dev/gemini-api/docs/pricing,2026-08-16,2026-08-16,Thinking/reasoning supported.
+gemini-3.1-pro,api_available,yes,Gemini API pricing,https://ai.google.dev/gemini-api/docs/pricing,2026-08-16,2026-08-16,Available via Gemini Developer API and Vertex AI.
+gemini-3.1-pro,input/output/cached input price (<=200K),2.00 / 12.00 / 0.20 USD per 1M,Gemini API pricing,https://ai.google.dev/gemini-api/docs/pricing,2026-08-16,2026-08-16,"Standard tier, prompt <=200K: input $2, output $12, cached $0.20."
+gemini-3.1-pro,batch price (<=200K),input 1.00 / output 6.00 USD per 1M,Gemini API pricing,https://ai.google.dev/gemini-api/docs/pricing,2026-08-16,2026-08-16,Batch = 50% off standard.
+gemini-3.1-pro,long-context price (>200K),input 4.00 / output 18.00 / cached 0.40 USD per 1M,Gemini API pricing,https://ai.google.dev/gemini-api/docs/pricing,2026-08-16,2026-08-16,"Prompt >200K: input $4, output $18, cached $0.40. long_context_price records input $4.00."
+gemini-3.1-pro,peak-offpeak price,NA,Gemini API pricing,https://ai.google.dev/gemini-api/docs/pricing,2026-08-16,2026-08-16,No peak/off-peak; service tiers Standard/Batch/Flex/Priority instead.
+deepseek-v4-pro,"provider, exact_version, release_date",DeepSeek; DeepSeek-V4-Pro-0813; 2026-08-13,DeepSeek API docs,https://api-docs.deepseek.com/quick_start/pricing,2026-08-13,2026-08-16,Version stamp 0813 -> 2026-08-13.
+deepseek-v4-pro,context_window,1000000,DeepSeek API docs,https://api-docs.deepseek.com/quick_start/pricing,2026-08-13,2026-08-16,1M context length.
+deepseek-v4-pro,max_output_tokens,384000,DeepSeek API docs,https://api-docs.deepseek.com/quick_start/pricing,2026-08-13,2026-08-16,Max output 384K.
+deepseek-v4-pro,vision_support,no,DeepSeek API docs / secondary,https://api-docs.deepseek.com/quick_start/pricing,2026-08-13,2026-08-16,DeepSeek V4 is text-only (no multimodal) per retrieved sources.
+deepseek-v4-pro,reasoning_support,yes,DeepSeek API docs,https://api-docs.deepseek.com/quick_start/pricing,2026-08-13,2026-08-16,Thinking mode (default) + non-thinking.
+deepseek-v4-pro,api_available,yes,DeepSeek API docs,https://api-docs.deepseek.com/quick_start/pricing,2026-08-13,2026-08-16,Available via api.deepseek.com (OpenAI/Anthropic compatible).
+deepseek-v4-pro,input/output/cached input price,0.435 / 0.87 / 0.003625 USD per 1M,DeepSeek API docs,https://api-docs.deepseek.com/quick_start/pricing,2026-08-13,2026-08-16,"Cache-miss input $0.435, output $0.87, cache-hit input $0.003625."
+deepseek-v4-pro,batch / long-context price,NA,DeepSeek API docs,https://api-docs.deepseek.com/quick_start/pricing,2026-08-13,2026-08-16,No explicit batch discount found; 1M context at standard rate.
+deepseek-v4-pro,peak / off-peak price,PEAK input 0.44 / output 1.32; OFF-PEAK input 0.22 / output 0.66 USD per 1M,DeepSeek API docs,https://api-docs.deepseek.com/quick_start/pricing,2026-08-13,2026-08-16,Peak/off-peak billing effective 2026-08-16 16:00 UTC. peak/off-peak columns record cache-miss INPUT prices; outputs in notes.
+qwen3.8-max,"provider, exact_version, release_date",Alibaba Qwen; Qwen3.8-Max; 2026-08-03,Qwen3.8 official blog,https://qwen.ai/blog?id=qwen3.8,2026-08-03,2026-08-16,Released 2026-08-03.
+qwen3.8-max,context_window,1000000,Qwen3.8 official blog,https://qwen.ai/blog?id=qwen3.8,2026-08-03,2026-08-16,"1,000,000-token context window (config context_window: 1000000)."
+qwen3.8-max,max_output_tokens,65536,Qwen3.8 official blog,https://qwen.ai/blog?id=qwen3.8,2026-08-03,2026-08-16,OpenClaw config maxTokens: 65536.
+qwen3.8-max,vision_support,yes,Qwen3.8 official blog,https://qwen.ai/blog?id=qwen3.8,2026-08-03,2026-08-16,"input_modalities text, image; multimodal agents."
+qwen3.8-max,reasoning_support,yes,Qwen3.8 official blog,https://qwen.ai/blog?id=qwen3.8,2026-08-03,2026-08-16,enable_thinking True; reasoning_effort xhigh/medium/low.
+qwen3.8-max,api_available,yes,Qwen3.8 official blog,https://qwen.ai/blog?id=qwen3.8,2026-08-03,2026-08-16,"QwenCloud API (OpenAI/Anthropic compatible), global nodes."
+qwen3.8-max,input/output/cached input price (overseas),2.00 / 6.00 / 0.25 USD per 1M,Global Times launch coverage,https://www.globaltimes.cn/page/202608/1367420.shtml,2026-08-03,2026-08-16,"Overseas price $2/$6, implicit cache-hit $0.25. Official blog omits price; domestic CNY 12/36, cache-hit 1.5."
+qwen3.8-max,batch / long-context / peak-offpeak price,NA,Qwen3.8 official blog,https://qwen.ai/blog?id=qwen3.8,2026-08-03,2026-08-16,"No batch discount, no separate long-context tier, no peak/off-peak found."
+glm-5.2,"provider, exact_version, release_date",Zhipu AI; GLM-5.2; NA,Zhipu official pricing,https://open.bigmodel.cn/pricing,2026-08-09,2026-08-16,Release date not confirmed in retrieved sources.
+glm-5.2,context_window,1048576,Zhipu official pricing / OpenRouter,https://open.bigmodel.cn/pricing,2026-08-09,2026-08-16,"1,048,576-token context window."
+glm-5.2,max_output_tokens,128000,Zhipu pricing mirror (llmcostcalc),https://llmcostcalc.com/cloud/zhipu,2026-08-03,2026-08-16,128K max output per official pricing-page mirror; OpenRouter lists 262K (conflict noted in metadata_notes).
+glm-5.2,vision_support,NA,Zhipu official pricing,https://open.bigmodel.cn/pricing,2026-08-09,2026-08-16,Modality not explicitly confirmed (GLM-5.1 documented text-only).
+glm-5.2,reasoning_support,yes,Zhipu official pricing,https://open.bigmodel.cn/pricing,2026-08-09,2026-08-16,GLM supports thinking/reasoning mode.
+glm-5.2,api_available,yes,Zhipu official pricing,https://open.bigmodel.cn/pricing,2026-08-09,2026-08-16,Available via bigmodel.cn / Z.AI platform.
+glm-5.2,"input/output/cached input price (CNY list, USD converted)",CNY 8 / 28 / 2 -> USD 1.13 / 3.94 / 0.28 per 1M,Zhipu official pricing,https://open.bigmodel.cn/pricing,2026-08-09,2026-08-16,"Official list price CNY: input Y8, output Y28, cache-hit Y2. Converted at 7.10 CNY/USD on 2026-08-16."
+glm-5.2,batch / long-context / peak-offpeak price,NA,Zhipu official pricing,https://open.bigmodel.cn/pricing,2026-08-09,2026-08-16,"No batch discount, no separate long-context tier, no peak/off-peak found in retrieved docs."
+grok-4.6,"provider, exact_version, release_date",xAI; Grok 4.6; 2026-08-12,xAI Grok 4.6 launch,https://x.ai/news/grok-4-6,2026-08-12,2026-08-16,Released 2026-08-12; API ID grok-4.6.
+grok-4.6,context_window,500000,xAI API docs,https://docs.x.ai/developers/pricing,2026-08-12,2026-08-16,"500,000-token context window."
+grok-4.6,max_output_tokens,NA,xAI API docs,https://docs.x.ai/developers/pricing,2026-08-12,2026-08-16,No published output cap.
+grok-4.6,vision_support,yes,xAI API docs,https://docs.x.ai/developers/pricing,2026-08-12,2026-08-16,Text + image input.
+grok-4.6,reasoning_support,yes,xAI API docs,https://docs.x.ai/developers/pricing,2026-08-12,2026-08-16,Reasoning levels low/medium/high/xhigh.
+grok-4.6,api_available,yes,xAI API docs,https://docs.x.ai/developers/pricing,2026-08-12,2026-08-16,"xAI API, OpenRouter, Vercel, Cloudflare, Cursor."
+grok-4.6,input/output/cached input price (short <200K),2.00 / 6.00 / 0.50 USD per 1M,xAI API docs,https://docs.x.ai/developers/pricing,2026-08-12,2026-08-16,"Short context (<200K input): input $2, cached $0.50, output $6."
+grok-4.6,batch price,NA,xAI API docs,https://docs.x.ai/developers/pricing,2026-08-12,2026-08-16,Grok 4.6 not in Batch discount table at retrieval.
+grok-4.6,long-context price (>=200K),input 4.00 / output 12.00 / cached 1.00 USD per 1M,xAI API docs,https://docs.x.ai/developers/pricing,2026-08-12,2026-08-16,"Prompt >=200K: input $4, cached $1, output $12. long_context_price records input $4.00."
+grok-4.6,peak-offpeak price,NA (Priority Processing 2x),xAI API docs,https://docs.x.ai/developers/pricing,2026-08-12,2026-08-16,No peak/off-peak; Priority Processing at 2x standard rates.
