@@ -4,7 +4,7 @@
 
 - 审计日期：2026-08-16
 - A 第一轮正式审计：已完成
-- B：远程已建立 `data-metadata`，但仍指向 `main` 初始提交，暂无数据可审计
+- B 第一轮正式审计：已完成（只读对象 `origin/data-metadata@a57ccff`）
 - C staging：已生成，尚未进入正式 raw
 - 原则：本文件只报告问题，不直接改写 A/B 原始记录
 
@@ -89,15 +89,57 @@ GPQA Diamond 和 GDPval-AA v2 的宽口径为 7/9，但严格队列最多 6/9；
 - 27 行均为 `manual_review_required=true`、`candidate_compatible=false`；模型配置尚未冻结。
 - 正式 `data/raw/cost_efficiency.csv` 与 `data/sources/efficiency_sources.csv` 仍为 0 数据行。
 
-## B 状态
+## C efficiency configuration audit
 
-本轮 Git fetch 遇到临时网络超时，随后通过 GitHub 官方只读分支 API 确认 `data-metadata` 已建立，但它当前仍指向与 `main` 相同的初始提交 `bc4f13c`。因此 `model_metadata.csv` 和 `metadata_sources.csv` 仍只有表头：
+9 个模型均已完成配置级复核，详表见 `results/efficiency_configuration_review.csv`：
+
+| model_id | status | 主要风险/结论 |
+|---|---|---|
+| `kimi-k3` | CONDITIONAL | Kimi 第一方且三指标同配置；页面没有命名 effort，需团队接受 AA 默认 reasoning 配置 |
+| `gpt-5.6-sol` | PASS | max、OpenAI 第一方、版本及三指标配置均明确 |
+| `claude-fable-5` | HOLD | 明示 Opus 4.8 Fallback；现有证据不能证明每次均由 Fable 5 执行或分离混合观测 |
+| `claude-opus-4.8` | PASS | Adaptive Reasoning、Max Effort、Anthropic 第一方且无 fallback 标签 |
+| `gpt-5.5` | PASS | xhigh、OpenAI 第一方；deprecated 是生命周期状态，不使截止日前的可验证数据自动失效 |
+| `glm-5.2` | HOLD | Together AI 是第三方；所选项无量化后缀但精度未披露，同页另有 FP4/FP8/NVFP4 部署 |
+| `gemini-3.1-pro-preview` | CONDITIONAL | AI Studio 与 Vertex 被 AA 分开统计；需冻结 provider 选择及未命名 reasoning 配置政策 |
+| `deepseek-v4-pro-0813` | PASS | 0813 显示名/slug、Reasoning、Max Effort、DeepSeek 第一方均明确 |
+| `qwen3.8-2.4t-a95b` | CONDITIONAL | Alibaba Cloud 第一方且只有一个 provider 对象；具体 effort 未显示，不得猜测 |
+
+风险控制结论：
+
+- **Provider**：第一方记录优先；Google 的 AI Studio/Vertex 不合并；Together AI 的 GLM 部署不与第一方 API 自动等同。
+- **Reasoning effort**：命名 effort 必须保留；未显示时使用 `NA`，只能以“AA default reasoning configuration”描述。
+- **Fallback**：Claude Fable 5 的 fallback 明示且可能改变模型身份，因此不进入 Core A/B。
+- **Quantization/deployment**：GLM 同页存在 FP4、FP8、NVFP4 和无后缀部署；无后缀不等于已证明全精度。
+- **指标口径**：TTFT 与 TTFA 不互换；E2E 仅为 AA 标准化 500-token 响应时间，不代表任意长度完整回答。
+- **滚动窗口**：72 小时 P50 会随 provider 负载和基础设施变化，跨日期抓取值不可当作同一静态测量。
+- **日期**：未来正式 raw 对本批记录使用 `measurement_date=NA`、`retrieval_date=2026-08-16`，并保留 rolling-window 设置。
+
+Core Set A 为 4/9（44.4%）；接受三个明确 CONDITIONAL 政策后的最大合理队列为 7/9（77.8%）。该覆盖率不包含两个 HOLD，未为达到 75% 降低审计标准。
+
+## B metadata first-round audit
+
+只读审计对象：`origin/data-metadata@a57ccff`。
 
 ```text
-B branch exists; data not available for audit yet
+model_metadata.csv：8 行
+metadata_sources.csv：71 行
+retrieval_date：均为 2026-08-16
+价格主列口径：列名声明 USD / 1M tokens
 ```
 
-未猜测或代填 B 的模型版本、API availability、价格或来源。
+主要问题：
+
+1. **候选池不一致（阻塞跨表合并）**：A 有 9 个候选，B 有 8 行。按严格 `model_id`，A 中缺少 B 对应行的有 `claude-fable-5`、`claude-opus-4.8`、`gpt-5.5`、`gemini-3.1-pro-preview`、`deepseek-v4-pro-0813`、`qwen3.8-2.4t-a95b`；B 额外/异名为 `claude-opus-4-8`、`gemini-3.1-pro`、`deepseek-v4-pro`、`qwen3.8-max`、`grok-4.6`。
+2. **严格版本对齐不足**：只有三个 `model_id` 与 A 直接相同；其中 `kimi-k3` 的 exact_version 为 `Kimi K3`、`gpt-5.6-sol` 为 `GPT-5.6 Sol`，均不与 A 的 slug 型 exact_version 严格相等；仅 `glm-5.2 / GLM-5.2` 严格相等。不能依靠大小写或显示名猜测自动合并。
+3. **Qwen 是不同候选**：B 的 `qwen3.8-max` / Qwen3.8-Max 不能替代 A 的 `qwen3.8-2.4t-a95b` / Qwen3.8 2.4T A95B。
+4. **价格字段语义**：输入、输出、cached input、batch input/output 均分列，未发现相互代填；但没有 `cache_write_price` 字段，也没有独立 `price_currency`/`price_unit` 字段。单位主要由列名和 notes 表达，后续 schema 冻结时应显式确认。
+5. **条件价格不可压成单值**：OpenAI 长上下文价格缺失；Gemini、Grok 有上下文分档；DeepSeek 有峰谷输入/输出价；GLM 是 CNY 原价按 7.10 汇率转 USD。这些条件必须保留，不能只取一个“统一价格”而丢失套餐、地区或时间。
+6. **来源直达性**：主表每行只有一个 `source_url`，但部分字段来自二级来源或其他页面；应以 71 行来源表逐字段追踪。Kimi 最大输出、Gemini context、GLM 最大输出等已在 B notes 标记二级来源/冲突，不能在核心模型中默认为已无争议。
+7. **API identifier**：schema 没有独立 API endpoint/model identifier 字段；部分 ID 仅写在 exact_version 或 notes，后续若作为工程指标使用需先统一字段政策。
+8. **日期**：所有检索日期早于 `DATA_CUTOFF_DATE=2026-08-17`；但若 `publication_date` 实际只是检索时页面状态，不应把它解释为价格首次生效日。`pricing_effective_date` 仍需逐模型保持官方有效日期语义。
+
+本轮只记录问题，未修改 B 的 `model_metadata.csv`、`metadata_sources.csv` 或候选表。
 
 ## Validator gap
 
@@ -112,5 +154,5 @@ B branch exists; data not available for audit yet
 ## 数据冻结意见
 
 - A：尚未通过数据冻结；来源集中、严格覆盖不足和重复 cohort 选择仍需处理。
-- B：尚无数据可审计。
+- B：已有数据，但候选身份、exact_version、价格条件与 schema 字段仍需修正/冻结，尚未通过数据冻结。
 - C：staging 采集成功，但配置/provider 未冻结，暂不进入正式 raw。

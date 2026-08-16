@@ -62,3 +62,56 @@ E2E：9/9 有数值；0/9 已冻结；9/9 需人工复核
 - 500-token E2E 只是题目“完整回答耗时”的标准化代理变量，论文必须说明定义差异。
 - provider、reasoning effort、fallback 与量化策略尚未冻结，当前 staging 不代表最终核心可比队列。
 - 正式入库前必须重新核对来源页面、配置、provider、哈希和可比性，并等待 A 候选模型表进入 `main`。
+
+## Phase 2.5 配置复核结论
+
+配置级复核表见 `results/efficiency_configuration_review.csv`。该表仍是 **REVIEW ONLY / NOT RAW DATA / NOT FOR FINAL MODELING YET**。
+
+| 队列 | 模型 | 冻结条件 |
+|---|---|---|
+| Core Set A / PASS | `gpt-5.6-sol` | GPT-5.6 Sol (max) / OpenAI |
+| Core Set A / PASS | `claude-opus-4.8` | Adaptive Reasoning、Max Effort / Anthropic |
+| Core Set A / PASS | `gpt-5.5` | xhigh / OpenAI；保留 deprecated 生命周期说明 |
+| Core Set A / PASS | `deepseek-v4-pro-0813` | Reasoning、Max Effort / DeepSeek |
+| Core Set B / CONDITIONAL | `kimi-k3` | 团队接受“AA 默认 reasoning 配置（无命名 effort）”作为冻结配置 |
+| Core Set B / CONDITIONAL | `gemini-3.1-pro-preview` | 团队明确选用 Google AI Studio 而不是 Vertex，并接受未命名 reasoning 配置 |
+| Core Set B / CONDITIONAL | `qwen3.8-2.4t-a95b` | 团队接受“AA 默认 reasoning 配置（无命名 effort）”作为冻结配置 |
+| Hold | `claude-fable-5` | fallback 可能改变实际执行模型；现有页面不能分离 Fable 与 Opus 4.8 观测 |
+| Hold | `glm-5.2` | Together AI 为第三方部署，具体精度/量化未披露；同页存在 FP4、FP8、NVFP4 变体 |
+
+严格 Core Set A 覆盖为 `4/9 = 44.4%`。若团队以书面规则接受上述三个 CONDITIONAL 配置，最大合理覆盖为 `7/9 = 77.8%`，可以在不把 HOLD 降级放行的前提下达到 75%。Claude Fable 5 与 GLM-5.2 不计入这一路径。
+
+## Core Efficiency Configuration Proposal
+
+1. **Exact version**：效率页面的模型身份必须严格匹配 A 候选表；不得用同系列旧版本或相似模型替代。reasoning effort 是配置标签，必须与 exact model version 一并保留。
+2. **Provider**：优先级为第一方官方 API/provider、官方云平台、明确标记的第三方 provider。若有第一方性能数据，不无理由采用第三方量化部署。`Google (AI Studio)` 与 `Google (Vertex)` 即使模型 slug 相同也作为不同 provider 配置。
+3. **Reasoning effort**：`max`、`xhigh`、`high`、`medium`、`low`、`non-reasoning`、`Adaptive Reasoning` 均为不同测试配置。页面未给 effort 名称时写 `NA`，只可命名为“AA default reasoning configuration”，不得猜测为 max/high。
+4. **Fallback**：必须显式记录 fallback 目标。若 fallback 会改变实际执行模型身份，默认排除严格核心；只有团队明确接受“策略型路由配置”，且论文不把结果误称为单一模型性能时才可另建分析队列。
+5. **Quantization / deployment**：FP4、FP8、NVFP4 等精度与 FAST 等部署标签均不可省略。没有披露具体精度时写 `NA`；第三方部署不自动视为与第一方 API 完全可比。
+6. **Workload**：核心统一使用 Artificial Analysis 默认 10k input-token workload、single prompt、P50 rolling 72-hour window。不同 workload 必须标记不兼容并排除当前核心。
+7. **三指标同配置**：TTFT、Output Speed、E2E 必须来自同一 exact version、configuration、provider/provider scope、workload 和统计窗口，不跨 provider 拼接。
+8. **E2E 定义**：统一表述为“Artificial Analysis 标准化 500-token 端到端响应时间”（`Artificial Analysis standardized end-to-end response time for 500 output tokens`），不解释为任意回答长度的完整总耗时。
+
+## Raw data precision policy
+
+- TTFT raw：保存 AA 结构化字段 `timeToFirstToken.median` 的原始可用精度，单位 seconds。
+- Output Speed raw：保存 `outputSpeed.median` 的原始可用精度，单位 tokens/s。
+- E2E raw：保存 `endToEndResponseTime.totalTime` 的原始可用精度，单位 seconds。
+- processed / paper：只在处理层或论文展示层统一舍入，建议秒数与 tokens/s 显示 2 位小数，并保留可复现的 raw 值；不为表格美观提前改写 raw 精度。
+
+## Date policy for rolling measurements
+
+- `measurement_date = NA`：72 小时滚动 P50 没有唯一单日测量日期。
+- `retrieval_date = 2026-08-16`：表示本批公开页面的检索日期，不冒充测量日期。
+- `test_setting/notes` 保留：`P50 over rolling past 72 hours, retrieved 2026-08-16`。
+- 若未来来源明确给出单次测量日期，才填写对应 `measurement_date`；不得用 retrieval date 自动代替。
+
+## Phase 3 前置依赖
+
+截至本轮 fetch，`origin/main:data/model_candidates.csv` 仍只有表头，而 `origin/data-benchmark` 有 9 个候选。因此：
+
+```text
+A candidate dependency unresolved
+```
+
+在 A 候选表经正常团队流程进入公共基线前，不写正式效率 raw。B 元数据审计结果见 `notes/data_audit.md`；B 的完成状态本身不自动阻塞 C 效率 raw，但 B 与 A 的模型身份目前明显不一致，合并前必须处理。
