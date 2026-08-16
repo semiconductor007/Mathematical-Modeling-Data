@@ -4,15 +4,15 @@
 
 ## Member A — Benchmark 能力数据
 
-- [ ] 建立 6–10 个候选模型池：精确到版本，Kimi K3 必须入池，并记录纳入依据与待核验项。
-- [ ] 收集 GPQA Diamond 与 HLE：记录版本、评价类型、推理/工具设置和可比性，形成模型 × Benchmark 记录。
-- [ ] 调研数学指标（FrontierMath、AIME、MATH 类）：选择前先比较覆盖率与测试口径，不因缺数而插值。
-- [ ] 收集代码指标（SWE-bench Verified/Pro、Terminal-Bench）：明确榜单版本、agent scaffold、工具和 pass@k。
-- [ ] 收集专业任务指标（GDPval/GDPval-AA）及其统一评价口径。
-- [ ] 收集多模态指标（MMMU/MMMU-Pro）：核对是否确为同版本、同设置。
-- [ ] 收集可横向比较的长文本理解/检索/问答 Benchmark，避免用 context window 替代能力成绩。
-- [ ] 运行覆盖率脚本并标注 Coverage <75% 的指标；提出“核心/补充/暂缓”建议，不自行冻结指标。
-- [ ] 在 `notes/benchmark_notes.md` 记录来源冲突、设置差异和无法比较的原因。
+- [x] 建立 6–10 个候选模型池：精确到版本，Kimi K3 必须入池，并记录纳入依据与待核验项。
+- [x] 收集 GPQA Diamond 与 HLE：记录版本、评价类型、推理/工具设置和可比性，形成模型 × Benchmark 记录。
+- [x] 调研数学指标（FrontierMath、AIME、MATH 类）：选择前先比较覆盖率与测试口径，不因缺数而插值。
+- [x] 收集代码指标（SWE-bench Verified/Pro、Terminal-Bench）：明确榜单版本、agent scaffold、工具和 pass@k。
+- [x] 收集专业任务指标（GDPval/GDPval-AA）及其统一评价口径。
+- [x] 收集多模态指标（MMMU/MMMU-Pro）：核对是否确为同版本、同设置。
+- [x] 收集可横向比较的长文本理解/检索/问答 Benchmark，避免用 context window 替代能力成绩。
+- [x] 运行覆盖率脚本并标注 Coverage <75% 的指标；提出“核心/补充/暂缓”建议，不自行冻结指标。
+- [x] 在 `notes/benchmark_notes.md` 记录来源冲突、设置差异和无法比较的原因。
 
 ## Member B — 元数据、官方资料与 API 价格
 

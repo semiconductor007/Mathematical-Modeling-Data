@@ -1,1 +1,10 @@
 model_id,provider,model_name,exact_version,release_date,candidate_status,benchmark_coverage,pricing_available,notes
+kimi-k3,Moonshot AI,Kimi K3,kimi-k3,2026-07-16,likely,17/24 raw (70.8%),pending,Mandatory candidate; anchor model in Kimi K3 official comparison matrix.
+gpt-5.6-sol,OpenAI,GPT-5.6 Sol,gpt-5.6-sol,2026-07-09,likely,23/24 raw (95.8%),pending,Overseas flagship; appears in Kimi and OpenAI comparison matrices.
+claude-fable-5,Anthropic,Claude Fable 5,claude-fable-5,2026-06-09,likely,21/24 raw (87.5%),pending,Highest Anthropic tier; fallback safeguards affect some evaluations and require audit.
+claude-opus-4.8,Anthropic,Claude Opus 4.8,claude-opus-4.8,2026-05-28,likely,23/24 raw (95.8%),pending,Widely reported comparator with stronger public benchmark coverage than newer sparse-data alternatives.
+gpt-5.5,OpenAI,GPT-5.5,gpt-5.5,2026-04-23,likely,23/24 raw (95.8%),pending,Mature OpenAI baseline with API and broad public benchmark coverage.
+glm-5.2,Z.ai,GLM-5.2,GLM-5.2,2026-06-16,likely,8/24 raw (33.3%),pending,Domestic open-weight flagship represented in Kimi K3 official matrix.
+gemini-3.1-pro-preview,Google,Gemini 3.1 Pro Preview,gemini-3.1-pro-preview,2026-02-19,likely,6/24 raw (25.0%),pending,Google representative; preview endpoint remains available and appears in OpenAI comparison matrix.
+deepseek-v4-pro-0813,DeepSeek,DeepSeek V4 Pro 0813,DeepSeek V4 Pro 0813,2026-08-13,pending,1/24 raw (4.2%),pending,Released four days before cutoff; AA unified index exists but component-score export still needs verification.
+qwen3.8-2.4t-a95b,Alibaba,Qwen3.8 2.4T A95B,Qwen3.8 2.4T A95B,2026-08-12,pending,1/24 raw (4.2%),pending,Released five days before cutoff; AA unified index exists but component-score export still needs verification.
