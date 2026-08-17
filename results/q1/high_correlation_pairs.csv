@@ -1,0 +1,5 @@
+﻿metric_a,metric_b,metric_a_name,metric_b_name,pairwise_models,pearson_r,spearman_r,threshold,same_dimension,decision,reason
+gpqa_diamond,mmmu_pro_no_tools,GPQA Diamond,MMMU-Pro,5,0.9500208295563306,0.9210526315789473,0.85,False,retain_both,保留二者：共同样本仅5个，且分别衡量不同能力维度；高相关性不足以证明语义冗余，后续场景评价仍分别需要
+gpqa_diamond,mathvision_no_tools,GPQA Diamond,MathVision,5,0.8610929525966302,0.6668859288553503,0.85,False,retain_both,保留二者：共同样本仅5个，且分别衡量不同能力维度；高相关性不足以证明语义冗余，后续场景评价仍分别需要
+scicode,charxiv_rq_no_tools,SciCode,CharXiv RQ,5,0.9326129582307064,0.9746794344808964,0.85,False,retain_both,保留二者：共同样本仅5个，且分别衡量不同能力维度；高相关性不足以证明语义冗余，后续场景评价仍分别需要
+mmmu_pro_no_tools,mathvision_no_tools,MMMU-Pro,MathVision,5,0.9349061106817603,0.8207826816681233,0.85,False,retain_both,保留二者：共同样本仅5个，且分别衡量不同能力维度；高相关性不足以证明语义冗余，后续场景评价仍分别需要

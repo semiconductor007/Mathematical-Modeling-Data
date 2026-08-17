@@ -1,0 +1,6 @@
+﻿model_id,model,mean_rank,rank_std,minimum_rank,maximum_rank,top1_probability,top3_probability,top5_probability,rank_1_probability,rank_2_probability,rank_3_probability,rank_4_probability,rank_5_probability,simulations,random_seed
+claude-fable-5,Claude Fable 5,1.0,0.0,1,1,1.0,1.0,1.0,1.0,0.0,0.0,0.0,0.0,1000,20260817
+kimi-k3,Kimi K3,2.0,0.0,2,2,0.0,1.0,1.0,0.0,1.0,0.0,0.0,0.0,1000,20260817
+gpt-5.6-sol,GPT-5.6 Sol,3.0,0.0,3,3,0.0,1.0,1.0,0.0,0.0,1.0,0.0,0.0,1000,20260817
+gpt-5.5,GPT-5.5,4.002,0.044676615807377355,4,5,0.0,0.0,1.0,0.0,0.0,0.0,0.998,0.002,1000,20260817
+claude-opus-4.8,Claude Opus 4.8,4.998,0.044676615807377355,4,5,0.0,0.0,1.0,0.0,0.0,0.0,0.002,0.998,1000,20260817

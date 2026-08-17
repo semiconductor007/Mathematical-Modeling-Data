@@ -84,7 +84,9 @@ python scripts/check_coverage.py
 python scripts/process_phase2_data.py
 python scripts/merge_data.py --final-only
 python scripts/run_pipeline.py
+python scripts/run_q1.py
+python scripts/validate_q1.py
 python -m unittest discover -s tests -v
 ```
 
-全部脚本仅使用 Python 标准库。`run_pipeline.py` 可重建 Phase 2–7 结果和 SVG 图表，并执行跨阶段校验；任何脚本都不会删除 `NA` 或自行补值。完整报告见 `paper/modeling_report.md`。
+基础 Phase 2–7 脚本仅使用 Python 标准库；问题1论文交付流水线使用 `requirements.txt` 中的 NumPy、pandas 和 Matplotlib 生成 300 dpi PNG。`run_pipeline.py` 可重建原有 Phase 2–7 结果，`run_q1.py` 可一次生成 `results/q1/` 与 `docs/` 下的问题1结果；任何脚本都不会删除 `NA` 或自行补值。完整报告见 `paper/modeling_report.md`。

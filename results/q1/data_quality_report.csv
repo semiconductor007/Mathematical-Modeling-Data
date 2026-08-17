@@ -1,0 +1,15 @@
+﻿scope,item,status,value,details
+dataset,model_count,pass,6,One row per final model
+dataset,indicator_count,pass,9,Frozen Question 1 indicator set
+dataset,duplicate_model_indicator_pairs,pass,0,Must be zero
+dataset,text_identifier_columns,pass,model_id/model_name,Identifiers are excluded from numerical modeling
+dataset,cost_latency_energy_excluded,pass,yes,Engineering and price fields are reserved for Question 3
+indicator,gpqa_diamond,pass,available=6; missing=0,dtype=numeric; unit=percent; direction=positive; min=91; max=94.1; constant=false
+indicator,hle_full_no_tools,pass,available=5; missing=1,dtype=numeric; unit=percent; direction=positive; min=41.4; max=53.3; constant=false
+indicator,aa_lcr,pass,available=6; missing=0,dtype=numeric; unit=percent; direction=positive; min=67.7; max=74.7; constant=false
+indicator,scicode,pass,available=6; missing=0,dtype=numeric; unit=percent; direction=positive; min=50.5; max=60.2; constant=false
+indicator,gdpval_aa_v2,pass,available=6; missing=0,dtype=numeric; unit=elo; direction=positive; min=1491; max=1747; constant=false
+indicator,mmmu_pro_no_tools,pass,available=5; missing=1,dtype=numeric; unit=percent; direction=positive; min=78.9; max=83; constant=false
+indicator,omnidocbench,pass,available=5; missing=1,dtype=numeric; unit=percent; direction=positive; min=85.8; max=91.1; constant=false
+indicator,charxiv_rq_no_tools,pass,available=5; missing=1,dtype=numeric; unit=percent; direction=positive; min=80.5; max=88.9; constant=false
+indicator,mathvision_no_tools,pass,available=5; missing=1,dtype=numeric; unit=percent; direction=positive; min=86.7; max=95.8; constant=false
