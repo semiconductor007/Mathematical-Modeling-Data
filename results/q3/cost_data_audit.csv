@@ -1,0 +1,7 @@
+﻿model_id,model,input_price_usd_per_million,output_price_usd_per_million,price_unit,workload_input_million_tokens,workload_output_million_tokens,standard_workload_cost_usd,price_data_complete,efficiency_compatible,comparable_ttft_seconds,comparable_output_speed_tokens_per_second,comparable_total_latency_seconds,energy_data_available,q1_ranking_status,q3_cost_analysis_status,notes
+kimi-k3,Kimi K3,3.0,15.0,USD / 1M tokens,1.0,0.2,6.0,True,True,3.46307208600004,39.4660292942798,66.8086896893993,False,ranked_complete_case,included,能耗字段不存在；不估算。效率仅在 compatible=true 时横向比较。
+gpt-5.6-sol,GPT-5.6 Sol,5.0,30.0,USD / 1M tokens,1.0,0.2,11.0,True,True,142.428721224,73.7378119009507,149.209502848923,False,ranked_complete_case,included,能耗字段不存在；不估算。效率仅在 compatible=true 时横向比较。
+claude-fable-5,Claude Fable 5,10.0,50.0,USD / 1M tokens,1.0,0.2,20.0,True,False,NA,NA,NA,False,ranked_complete_case,included,能耗字段不存在；不估算。效率仅在 compatible=true 时横向比较。
+claude-opus-4.8,Claude Opus 4.8,5.0,25.0,USD / 1M tokens,1.0,0.2,10.0,True,True,24.7381887305,61.0632695191376,32.9264171686005,False,ranked_complete_case,included,能耗字段不存在；不估算。效率仅在 compatible=true 时横向比较。
+gpt-5.5,GPT-5.5,3.0,15.0,USD / 1M tokens,1.0,0.2,6.0,True,True,48.4270293085,89.5059851986358,54.0132479160085,False,ranked_complete_case,included,能耗字段不存在；不估算。效率仅在 compatible=true 时横向比较。
+glm-5.2,GLM-5.2,1.13,3.94,USD / 1M tokens,1.0,0.2,1.918,True,False,NA,NA,NA,False,not_ranked_insufficient_coverage,included,能耗字段不存在；不估算。效率仅在 compatible=true 时横向比较。

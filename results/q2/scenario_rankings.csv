@@ -1,0 +1,19 @@
+﻿scenario,scenario_name,model_id,model,q1_rank,distance_positive,distance_negative,topsis_score,rank,rank_change_vs_q1,rank_improvement_vs_q1,ranking_status
+code_development,计算机代码开发,claude-fable-5,Claude Fable 5,1.0,0.09643150317338502,0.3269385643142297,0.7722288121462294,1.0,0.0,0.0,ranked_complete_case
+code_development,计算机代码开发,kimi-k3,Kimi K3,2.0,0.1324596672075786,0.2867476443664188,0.6840234806252965,2.0,0.0,0.0,ranked_complete_case
+code_development,计算机代码开发,gpt-5.6-sol,GPT-5.6 Sol,3.0,0.17788707149288804,0.24956831861352083,0.5838464653619045,3.0,0.0,0.0,ranked_complete_case
+code_development,计算机代码开发,gpt-5.5,GPT-5.5,4.0,0.2186847542097532,0.20978886196806384,0.48961908982746144,4.0,0.0,0.0,ranked_complete_case
+code_development,计算机代码开发,claude-opus-4.8,Claude Opus 4.8,5.0,0.26845009030506306,0.13728959449141523,0.3383686625583115,5.0,0.0,0.0,ranked_complete_case
+code_development,计算机代码开发,glm-5.2,GLM-5.2,NA,NA,NA,NA,NA,NA,NA,not_ranked_insufficient_coverage
+daily_dialogue,大众日常通用对话,claude-fable-5,Claude Fable 5,1.0,0.11170591310177035,0.28842616547470407,0.7208273990448861,1.0,0.0,0.0,ranked_complete_case
+daily_dialogue,大众日常通用对话,kimi-k3,Kimi K3,2.0,0.14968251168196603,0.2595908793222966,0.6342725547960016,2.0,0.0,0.0,ranked_complete_case
+daily_dialogue,大众日常通用对话,gpt-5.6-sol,GPT-5.6 Sol,3.0,0.1772598939619554,0.26854005176185325,0.6023779373186035,3.0,0.0,0.0,ranked_complete_case
+daily_dialogue,大众日常通用对话,gpt-5.5,GPT-5.5,4.0,0.24300914963208473,0.19029034575715462,0.4391658605238254,4.0,0.0,0.0,ranked_complete_case
+daily_dialogue,大众日常通用对话,claude-opus-4.8,Claude Opus 4.8,5.0,0.2673242614167771,0.13959933915040965,0.34306031637346757,5.0,0.0,0.0,ranked_complete_case
+daily_dialogue,大众日常通用对话,glm-5.2,GLM-5.2,NA,NA,NA,NA,NA,NA,NA,not_ranked_insufficient_coverage
+research_long_text,科研长文本分析,kimi-k3,Kimi K3,2.0,0.14827240016363868,0.2810919429085812,0.654669973052003,1.0,-1.0,1.0,ranked_complete_case
+research_long_text,科研长文本分析,claude-fable-5,Claude Fable 5,1.0,0.1463430543476368,0.26832005151445376,0.6470796357843617,2.0,1.0,-1.0,ranked_complete_case
+research_long_text,科研长文本分析,gpt-5.6-sol,GPT-5.6 Sol,3.0,0.1901929004124587,0.25245376348644094,0.5703279479456358,3.0,0.0,0.0,ranked_complete_case
+research_long_text,科研长文本分析,gpt-5.5,GPT-5.5,4.0,0.2094437915976474,0.23388595753613065,0.5275665754286069,4.0,0.0,0.0,ranked_complete_case
+research_long_text,科研长文本分析,claude-opus-4.8,Claude Opus 4.8,5.0,0.2884584769406462,0.1324795567811697,0.3147246059231632,5.0,0.0,0.0,ranked_complete_case
+research_long_text,科研长文本分析,glm-5.2,GLM-5.2,NA,NA,NA,NA,NA,NA,NA,not_ranked_insufficient_coverage

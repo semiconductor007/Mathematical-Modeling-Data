@@ -86,6 +86,9 @@ python scripts/merge_data.py --final-only
 python scripts/run_pipeline.py
 python scripts/run_q1.py
 python scripts/validate_q1.py
+python scripts/run_q2.py
+python scripts/run_q3.py
+python scripts/validate_q2_q3.py
 python -m unittest discover -s tests -v
 ```
 

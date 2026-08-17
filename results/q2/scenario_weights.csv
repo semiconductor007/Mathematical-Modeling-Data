@@ -1,0 +1,28 @@
+﻿scenario,scenario_name,metric,critic_weight,subjective_weight,objective_share,combined_weight,weight_change_vs_q1,rationale
+research_long_text,科研长文本分析,gpqa_diamond,0.1039085787689134,0.12,0.5,0.1119542893844567,0.008045710615543294,Scientific reasoning
+research_long_text,科研长文本分析,hle_full_no_tools,0.2013184129312764,0.12,0.5,0.1606592064656382,-0.0406592064656382,Hard open-domain reasoning
+research_long_text,科研长文本分析,aa_lcr,0.1269683754946129,0.25,0.5,0.18848418774730646,0.061515812252693564,Long-context reasoning is the primary task
+research_long_text,科研长文本分析,scicode,0.0673656509556235,0.05,0.5,0.05868282547781175,-0.008682825477811747,Auxiliary research programming
+research_long_text,科研长文本分析,gdpval_aa_v2,0.1167204352716662,0.08,0.5,0.09836021763583311,-0.018360217635833093,Professional task execution
+research_long_text,科研长文本分析,mmmu_pro_no_tools,0.0865041663031948,0.08,0.5,0.0832520831515974,-0.0032520831515973903,Multimodal evidence
+research_long_text,科研长文本分析,omnidocbench,0.1482615325244908,0.12,0.5,0.1341307662622454,-0.014130766262245409,Document understanding
+research_long_text,科研长文本分析,charxiv_rq_no_tools,0.0733538393629176,0.13,0.5,0.10167691968145881,0.028323080318541208,Research-chart and document reasoning
+research_long_text,科研长文本分析,mathvision_no_tools,0.075599008387304,0.05,0.5,0.062799504193652,-0.012799504193652,Visual mathematical material
+daily_dialogue,大众日常通用对话,gpqa_diamond,0.1039085787689134,0.12,0.5,0.1119542893844567,0.008045710615543294,Reasoning reliability
+daily_dialogue,大众日常通用对话,hle_full_no_tools,0.2013184129312764,0.12,0.5,0.1606592064656382,-0.0406592064656382,General difficult questions
+daily_dialogue,大众日常通用对话,aa_lcr,0.1269683754946129,0.1,0.5,0.11348418774730645,-0.013484187747306448,Conversation context retention
+daily_dialogue,大众日常通用对话,scicode,0.0673656509556235,0.03,0.5,0.04868282547781175,-0.01868282547781175,Low coding relevance
+daily_dialogue,大众日常通用对话,gdpval_aa_v2,0.1167204352716662,0.2,0.5,0.1583602176358331,0.041639782364166905,Broad practical task value
+daily_dialogue,大众日常通用对话,mmmu_pro_no_tools,0.0865041663031948,0.15,0.5,0.1182520831515974,0.0317479168484026,Everyday image understanding
+daily_dialogue,大众日常通用对话,omnidocbench,0.1482615325244908,0.1,0.5,0.12413076626224541,-0.024130766262245404,Document interaction
+daily_dialogue,大众日常通用对话,charxiv_rq_no_tools,0.0733538393629176,0.06,0.5,0.06667691968145881,-0.0066769196814587956,Lower specialist-document relevance
+daily_dialogue,大众日常通用对话,mathvision_no_tools,0.075599008387304,0.12,0.5,0.09779950419365199,0.02220049580634799,Visual reasoning
+code_development,计算机代码开发,gpqa_diamond,0.1039085787689134,0.12,0.5,0.1119542893844567,0.008045710615543294,Complex debugging reasoning
+code_development,计算机代码开发,hle_full_no_tools,0.2013184129312764,0.08,0.5,0.1406592064656382,-0.06065920646563819,General problem solving
+code_development,计算机代码开发,aa_lcr,0.1269683754946129,0.08,0.5,0.10348418774730644,-0.023484187747306456,Repository-scale context
+code_development,计算机代码开发,scicode,0.0673656509556235,0.4,0.5,0.23368282547781177,0.16631717452218828,Primary coding indicator
+code_development,计算机代码开发,gdpval_aa_v2,0.1167204352716662,0.12,0.5,0.1183602176358331,0.0016397823641668974,Real task completion
+code_development,计算机代码开发,mmmu_pro_no_tools,0.0865041663031948,0.05,0.5,0.06825208315159739,-0.018252083151597404,Low direct relevance
+code_development,计算机代码开发,omnidocbench,0.1482615325244908,0.05,0.5,0.0991307662622454,-0.04913076626224541,Documentation understanding
+code_development,计算机代码开发,charxiv_rq_no_tools,0.0733538393629176,0.05,0.5,0.0616769196814588,-0.0116769196814588,Technical chart reading
+code_development,计算机代码开发,mathvision_no_tools,0.075599008387304,0.05,0.5,0.062799504193652,-0.012799504193652,Low direct relevance
