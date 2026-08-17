@@ -55,7 +55,7 @@ CSV 十位小数加总为 `1.0000000001`，属于舍入误差。
 | 4 | GPT-5.5 | 0.4409692387 |
 | 5 | Claude Opus 4.8 | 0.3901637084 |
 
-GLM-5.2 只有 4/9 项核心成绩，`topsis_score=NA`，不得进入主排名或写成“排名第六”。
+GLM-5.2 在冻结主 cohort 中只有 4/9 项核心成绩，`topsis_score=NA`，不得进入主排名或写成“排名第六”。官方 HLE 40.5（with tools 54.7）位于独立 Z.ai cohort；四项视觉指标为纯文本模型的结构性不适用。
 
 ### 5. 三类场景完整排名
 
@@ -76,14 +76,14 @@ GLM-5.2 只有 4/9 项核心成绩，`topsis_score=NA`，不得进入主排名�
 |---|---:|---:|---|
 | Kimi K3 | 6.0000 | 0.5933487598 | 是 |
 | GPT-5.6 Sol | 11.0000 | 0.5177743845 | 否 |
-| Claude Fable 5 | 16.0000 | 0.7253547227 | 是 |
+| Claude Fable 5 | 20.0000 | 0.7253547227 | 是 |
 | Claude Opus 4.8 | 10.0000 | 0.3901637084 | 否 |
 | GPT-5.5 | 6.0000 | 0.4409692387 | 否 |
 | GLM-5.2 | 1.9180 | NA | 不参与（缺少主排名性能） |
 
 - Pareto front：Kimi K3、Claude Fable 5。
-- 预算 `$6/$10/$12`：推荐 Kimi K3。
-- 预算 `$16`：推荐 Claude Fable 5。
+- 预算 `$6/$10/$12/$16`：推荐 Kimi K3。
+- 预算 `$20`：推荐 Claude Fable 5。
 - 结论只适用于上述 workload 和截面标准价，不含缓存、Batch、区域加价、长上下文阶梯价或峰谷价格。
 
 ### 7. 严格效率比较范围
@@ -100,7 +100,7 @@ GLM-5.2 只有 4/9 项核心成绩，`topsis_score=NA`，不得进入主排名�
 - 最低 Kendall tau：`0.8`。
 - 前三名在全部扰动中保持 Fable、Kimi、GPT-5.6 Sol。
 - 唯一换位：`HLE-Full × 1.2` 时 Claude Opus 4.8 与 GPT-5.5 互换第 4/5 名。
-- 成本—性能对数回归：`n=5`，`R²=0.2241805179`，只允许称为当前样本内探索性关系。
+- 成本—性能对数回归：`n=5`，`R²=0.3146723881`，只允许称为当前样本内探索性关系。
 
 ## 二、论文禁止写错
 
@@ -123,7 +123,7 @@ GLM-5.2 只有 4/9 项核心成绩，`topsis_score=NA`，不得进入主排名�
 | 问题一 TOPSIS | `results/phase4/general_ranking.csv` | 五模型得分与排名，GLM 未排名 | `figures/general_ranking.svg` | 模板距离公式必须与加权矩阵实现一致 |
 | 问题二三场景 | `results/phase5/scenario_weights.csv`、`scenario_rankings.csv` | 三组完整排名与得分 | `figures/scenario_rank_changes.svg` | 场景偏好，不是专家调查 |
 | 问题三成本/Pareto | `results/phase6/performance_cost.csv` | workload、成本、Pareto | `figures/performance_cost_pareto.svg` | 特定截面价；GLM 无性能分 |
-| 问题三预算 | `results/phase6/budget_recommendations.csv` | `$6/$10/$12/$16` 推荐 | 预算推荐表 | 预算是 USD，不是无量纲指数 |
+| 问题三预算 | `results/phase6/budget_recommendations.csv` | `$6/$10/$12/$16/$20` 推荐 | 预算推荐表 | 预算是 USD，不是无量纲指数 |
 | 工程效率子分析 | `results/phase6/engineering_efficiency.csv` | 4 个 compatible 模型及部署分数 | 单独表格 | Fable/GLM 不得排名 |
 | 稳健性 | `results/phase7/method_comparison.csv`、`rank_correlation.csv`、`rank_stability.csv` | 熵权一致、36 次、tau=0.8、唯一换位 | 稳健性表/图 | 仅局部单因素扰动 |
 | 成本—性能回归 | `results/phase7/cost_performance_regression.csv` | n=5、方程、R² | 回归结果表 | 探索性，不外推、不因果 |
@@ -145,7 +145,7 @@ GLM-5.2 只有 4/9 项核心成绩，`topsis_score=NA`，不得进入主排名�
 - [ ] 36 次扰动结果一致
 - [ ] Kendall tau 最低值一致
 - [ ] 唯一第 4/5 名换位情形一致
-- [ ] 回归写明 n=5 和 R²=0.2241805179
+- [ ] 回归写明 n=5 和 R²=0.3146723881
 - [ ] 小样本限制已写
 - [ ] Benchmark 厂商报告来源集中限制已写
 - [ ] 临近截止日发布导致覆盖差异已写

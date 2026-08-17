@@ -94,7 +94,16 @@ def build(output_dir: Path) -> dict[str, int]:
                 "source_name": row["source_name"],
                 "source_url": row["source_url"],
                 "retrieval_date": row["retrieval_date"],
-                "missing_reason": "not reported in frozen cohort" if score == NA else NA,
+                "missing_reason": (
+                    "not applicable: frozen model is text-only"
+                    if score == NA
+                    and row["model_id"] == "glm-5.2"
+                    and cohort["dimension"] in {
+                        "multimodal", "document_understanding",
+                        "research_document_reasoning", "multimodal_math",
+                    }
+                    else "not reported in frozen cohort" if score == NA else NA
+                ),
             })
         present_ids = sorted(row["model_id"] for row in matches if row["score"] != NA)
         missing_ids = sorted(set(final_ids) - set(present_ids))

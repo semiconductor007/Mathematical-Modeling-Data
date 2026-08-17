@@ -4,7 +4,7 @@ gpt-5.6-sol,OpenAI,GPT-5.6 Sol,gpt-5.6-sol,2026-07-09,final,23/24 raw (95.8%),ye
 claude-fable-5,Anthropic,Claude Fable 5,claude-fable-5,2026-06-09,final,21/24 raw (87.5%),yes,最终池；Benchmark 覆盖充分；效率 fallback 数据仅作补充且不进入严格效率队列
 claude-opus-4.8,Anthropic,Claude Opus 4.8,claude-opus-4.8,2026-05-28,final,23/24 raw (95.8%),yes,最终池；成熟对照数据较多
 gpt-5.5,OpenAI,GPT-5.5,gpt-5.5,2026-04-23,final,23/24 raw (95.8%),yes,最终池；稳定且公开数据充分的基线
-glm-5.2,Z.ai,GLM-5.2,GLM-5.2,2026-06-16,final,8/24 raw (33.3%),yes,最终池；国产开源代表；部分指标为 NA 但核心队列仍达到覆盖门槛
+glm-5.2,Z.ai,GLM-5.2,GLM-5.2,2026-06-16,final,10/24 raw (41.7%),yes,最终池；国产开源代表；新增官方 HLE 两种设置，独立 cohort 保留；纯文本模型的视觉指标不适用
 gemini-3.1-pro-preview,Google,Gemini 3.1 Pro Preview,gemini-3.1-pro-preview,2026-02-19,excluded,6/24 raw (25.0%),yes,排除出最终池；公开严格可比 Benchmark 覆盖不足且仍为 preview；保留原始数据作补充
 deepseek-v4-pro-0813,DeepSeek,DeepSeek V4 Pro 0813,DeepSeek V4 Pro 0813,2026-08-13,excluded,1/24 raw (4.2%),yes,排除出最终池；距截止日仅 4 天且只有综合指数可核验；保留原始数据作补充
 qwen3.8-2.4t-a95b,Alibaba,Qwen3.8 2.4T A95B,Qwen3.8 2.4T A95B,2026-08-12,excluded,1/24 raw (4.2%),yes,排除出最终池；距截止日仅 5 天且只有综合指数可核验；保留原始数据作补充

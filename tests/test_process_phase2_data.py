@@ -29,6 +29,18 @@ class Phase2ProcessorTests(unittest.TestCase):
             })
             glm = next(row for row in matrix if row["model_id"] == "glm-5.2")
             self.assertEqual(glm["hle_full_no_tools"], "NA")
+            with (output / "core_benchmark_long.csv").open(encoding="utf-8", newline="") as handle:
+                long_rows = list(csv.DictReader(handle))
+            glm_missing = [row for row in long_rows if row["model_id"] == "glm-5.2" and row["score"] == "NA"]
+            self.assertEqual(len(glm_missing), 5)
+            self.assertEqual(
+                sum(row["missing_reason"] == "not applicable: frozen model is text-only" for row in glm_missing),
+                4,
+            )
+            self.assertEqual(
+                sum(row["missing_reason"] == "not reported in frozen cohort" for row in glm_missing),
+                1,
+            )
             with (output / "indicator_quality.csv").open(encoding="utf-8", newline="") as handle:
                 quality = list(csv.DictReader(handle))
             self.assertEqual(len(quality), 9)

@@ -20,13 +20,16 @@ ALIGNED WITH MEMBER A CANDIDATE POOL (9 models):
 
 References (retrieved 2026-08-16):
   Kimi K3                  https://www.kimi.com/blog/kimi-k3
+                           https://www.kimi.com/help/kimi-api/api-troubleshooting
   GPT-5.6 Sol              https://developers.openai.com/api/docs/models/compare/
-                           https://platform.openai.com/docs/pricing/
-  Claude Fable 5           https://platform.claude.com/docs/zh-CN/about-claude/models
+                           https://developers.openai.com/api/docs/models/gpt-5.6-sol
+  Claude Fable 5           https://platform.claude.com/docs/en/about-claude/pricing
   Claude Opus 4.8          https://platform.claude.com/docs/zh-CN/about-claude/models
   GPT-5.5                  https://developers.openai.com/api/docs/models/compare/
                            https://platform.openai.com/docs/pricing/
   GLM-5.2                  https://open.bigmodel.cn/pricing
+                           https://docs.bigmodel.cn/cn/guide/models/text/glm-5.2
+                           https://huggingface.co/zai-org/GLM-5.2
   Gemini 3.1 Pro Preview   https://ai.google.dev/gemini-api/docs/pricing
   DeepSeek V4 Pro 0813     https://api-docs.deepseek.com/quick_start/pricing
   Qwen3.8 2.4T A95B        https://qwen.ai/blog?id=qwen3.8
@@ -58,7 +61,7 @@ METADATA = [
         "exact_version": "kimi-k3",
         "release_date": "2026-07-16",
         "context_window": 1048576,
-        "max_output_tokens": 33000,
+        "max_output_tokens": 1048576,
         "vision_support": "yes",
         "reasoning_support": "yes",
         "api_available": "yes",
@@ -72,8 +75,8 @@ METADATA = [
         "off_peak_price": "NA",
         "pricing_effective_date": "2026-07-16",
         "source_url": "https://www.kimi.com/blog/kimi-k3",
-        "retrieval_date": RETRIEVAL,
-        "notes": "Required by problem statement. 2.8T MoE (104B active); native vision (text/image/video); always-on thinking (effort low/high/max, max default). Max output 33K from secondary aggregator (swfte.com); official blog did not state it. No batch discount found. 1M context at standard rate (no separate long-context tier found).",
+        "retrieval_date": "2026-08-17",
+        "notes": "Required by problem statement. 2.8T MoE (104B active); native vision (text/image/video); always-on thinking (effort low/high/max, max default). Official Kimi API docs allow max_completion_tokens up to 1,048,576; actual output is bounded by 1,048,576 minus prompt_tokens, and the default is 131,072. No batch discount found. 1M context at standard rate (no separate long-context tier found).",
     },
     {
         "model_id": "gpt-5.6-sol",
@@ -91,13 +94,13 @@ METADATA = [
         "cached_input_price_usd_per_million": 0.50,
         "batch_input_price": 2.50,
         "batch_output_price": 15.00,
-        "long_context_price": "NA",
+        "long_context_price": 10.00,
         "peak_price": "NA",
         "off_peak_price": "NA",
         "pricing_effective_date": "2026-07-09",
-        "source_url": "https://developers.openai.com/api/docs/models/compare/",
-        "retrieval_date": RETRIEVAL,
-        "notes": "Flagship frontier model. Standard rates shown are for context <270K; OpenAI applies a separate long-context (>270K) tier whose exact values were not captured at retrieval (verify on pricing page) -> long_context_price NA. Batch = 50% off standard. Regional (data-residency) endpoints +10%. Release date 2026-07-09 confirmed via OpenAI model-compare page (aligned with Member A).",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+        "retrieval_date": "2026-08-17",
+        "notes": "Flagship frontier model. Standard rates are input $5 / cached input $0.50 / output $30 per 1M. For prompts with more than 272K input tokens, OpenAI charges 2x input and 1.5x output for the full request, i.e. $10 input and $45 output; long_context_price records the input rate. Batch = 50% off standard. Regional (data-residency) endpoints +10%. Release date 2026-07-09 aligned with Member A.",
     },
     {
         "model_id": "claude-fable-5",
@@ -110,18 +113,18 @@ METADATA = [
         "vision_support": "yes",
         "reasoning_support": "yes",
         "api_available": "yes",
-        "input_price_usd_per_million": 8.00,
-        "output_price_usd_per_million": 40.00,
-        "cached_input_price_usd_per_million": 0.80,
-        "batch_input_price": 4.00,
-        "batch_output_price": 20.00,
+        "input_price_usd_per_million": 10.00,
+        "output_price_usd_per_million": 50.00,
+        "cached_input_price_usd_per_million": 1.00,
+        "batch_input_price": 5.00,
+        "batch_output_price": 25.00,
         "long_context_price": "NA",
         "peak_price": "NA",
         "off_peak_price": "NA",
         "pricing_effective_date": "2026-06-09",
-        "source_url": "https://platform.claude.com/docs/zh-CN/about-claude/models",
-        "retrieval_date": RETRIEVAL,
-        "notes": "Highest Anthropic tier (above Opus 4.8). Adaptive thinking with effort controls. AA labels Opus 4.8 Fallback safeguards that affect some evaluations; C audit flags HOLD because fallback routing frequency is not disclosed and model identity may be mixed. 1M context at standard pricing (no surcharge). Cached input = prompt-cache read = 10% of input ($0.80). Batch API = 50% off.",
+        "source_url": "https://platform.claude.com/docs/en/about-claude/pricing",
+        "retrieval_date": "2026-08-17",
+        "notes": "Highest Anthropic tier (above Opus 4.8). Adaptive thinking with effort controls. AA labels Opus 4.8 Fallback safeguards that affect some evaluations; C audit flags HOLD because fallback routing frequency is not disclosed and model identity may be mixed. 1M context at standard pricing (no surcharge). Official current rates are input $10 / cached input $1 / output $50 per 1M; Batch API rates are $5 / $25.",
     },
     {
         "model_id": "claude-opus-4.8",
@@ -178,8 +181,8 @@ METADATA = [
         "exact_version": "GLM-5.2",
         "release_date": "2026-06-16",
         "context_window": 1048576,
-        "max_output_tokens": 128000,
-        "vision_support": "NA",
+        "max_output_tokens": 131072,
+        "vision_support": "no",
         "reasoning_support": "yes",
         "api_available": "yes",
         "input_price_usd_per_million": 1.13,
@@ -192,8 +195,8 @@ METADATA = [
         "off_peak_price": "NA",
         "pricing_effective_date": "2026-06-16",
         "source_url": "https://open.bigmodel.cn/pricing",
-        "retrieval_date": RETRIEVAL,
-        "notes": "Provider aligned to Z.ai per Member A candidate pool (official platform: bigmodel.cn / z.ai). Official list price is CNY: input Y8 / output Y28 / cache-hit Y2 per 1M. Converted to USD at 7.10 CNY/USD on 2026-08-16 -> $1.13 / $3.94 / $0.28 (conversion reproducible; raw CNY in notes). Max output 128K from official pricing-page mirror (OpenRouter lists 262K - conflict noted in metadata_notes). Modality not explicitly confirmed (GLM-5.1 documented text-only) -> vision_support NA. Release date 2026-06-16 (aligned with Member A). 1M context at standard rate.",
+        "retrieval_date": "2026-08-17",
+        "notes": "Provider aligned to Z.ai per Member A candidate pool (official platform: bigmodel.cn / z.ai). Official China list price is CNY: input Y8 / output Y28 / cache-hit Y2 per 1M. Converted to USD at 7.10 CNY/USD on 2026-08-16 -> $1.13 / $3.94 / $0.28 (conversion reproducible; raw CNY in notes). Official GLM-5.2 docs specify 128K maximum output, stored exactly as 131,072 tokens; the third-party 262K claim is rejected. The official Z.ai model card classifies GLM-5.2 as text generation, so vision_support=no. Release date 2026-06-16 (aligned with Member A). 1M context at standard rate.",
     },
     {
         "model_id": "gemini-3.1-pro-preview",
@@ -282,9 +285,9 @@ SOURCES = [
     ("kimi-k3", "context_window", "1048576",
      "Kimi K3 official blog", "https://www.kimi.com/blog/kimi-k3", "2026-07-16", S,
      "1,048,576-token context window per Hugging Face model card cited in blog."),
-    ("kimi-k3", "max_output_tokens", "33000",
-     "Swfte AI Model Directory (secondary)", "https://www.swfte.com/zh/ai/models/moonshot-kimi-k3", "2026-08-16", S,
-     "33K max output from secondary aggregator; official blog did not state it - single source, flagged."),
+    ("kimi-k3", "max_output_tokens", "1048576 (context-bound; default 131072)",
+     "Kimi API troubleshooting", "https://www.kimi.com/help/kimi-api/api-troubleshooting", "2026-08-17", "2026-08-17",
+     "Official docs: max_completion_tokens defaults to 131072 and can be set up to 1048576; actual output maximum equals 1048576 minus prompt_tokens."),
     ("kimi-k3", "vision_support", "yes",
      "Kimi K3 official blog", "https://www.kimi.com/blog/kimi-k3", "2026-07-16", S,
      "Native multimodal: text, image, video input."),
@@ -322,13 +325,13 @@ SOURCES = [
      "Generally available via OpenAI API."),
     ("gpt-5.6-sol", "input/output/cached input price", "5.00 / 30.00 / 0.50 USD per 1M",
      "OpenAI API pricing", "https://platform.openai.com/docs/pricing/", "2026-08-16", S,
-     "Standard rates for context <270K: input $5, cached $0.50, output $30."),
+     "Standard rates up to 272K input tokens: input $5, cached $0.50, output $30."),
     ("gpt-5.6-sol", "batch price", "input 2.50 / output 15.00 USD per 1M",
      "OpenAI API pricing", "https://platform.openai.com/docs/pricing/", "2026-08-16", S,
      "Batch API = 50% off standard."),
-    ("gpt-5.6-sol", "long-context / peak-offpeak price", "NA",
-     "OpenAI API pricing", "https://platform.openai.com/docs/pricing/", "2026-08-16", S,
-     "Long-context (>270K) tier exists but exact values not captured at retrieval; no peak/off-peak. NA pending verification."),
+    ("gpt-5.6-sol", "long-context / peak-offpeak price", "input 10.00 / output 45.00 USD per 1M; peak/offpeak NA",
+     "OpenAI GPT-5.6 Sol model page", "https://developers.openai.com/api/docs/models/gpt-5.6-sol", "2026-08-17", "2026-08-17",
+     "Prompts with >272K input tokens are billed at 2x input and 1.5x output for the full request; no peak/off-peak price. long_context_price stores the $10 input rate."),
 
     # ---- claude-fable-5 ----
     ("claude-fable-5", "provider, exact_version, release_date", "Anthropic; claude-fable-5; 2026-06-09",
@@ -349,11 +352,11 @@ SOURCES = [
     ("claude-fable-5", "api_available", "yes",
      "Anthropic models overview", "https://platform.claude.com/docs/zh-CN/about-claude/models", "2026-08-16", S,
      "GA on Claude API, Bedrock, Vertex, Foundry."),
-    ("claude-fable-5", "input/output/cached input price", "8.00 / 40.00 / 0.80 USD per 1M",
-     "Anthropic models overview + pricing docs", "https://platform.claude.com/docs/zh-CN/about-claude/models", "2026-08-16", S,
-     "Input $8, output $40; prompt-cache read = 10% of input = $0.80. Highest Anthropic tier, above Opus 4.8 ($5/$25)."),
-    ("claude-fable-5", "batch price", "input 4.00 / output 20.00 USD per 1M",
-     "Anthropic pricing docs", "https://platform.claude.com/docs/zh-CN/about-claude/models", "2026-08-16", S,
+    ("claude-fable-5", "input/output/cached input price", "10.00 / 50.00 / 1.00 USD per 1M",
+     "Anthropic pricing docs", "https://platform.claude.com/docs/en/about-claude/pricing", "2026-08-17", "2026-08-17",
+     "Official current pricing: input $10, output $50, cache hits and refreshes $1 per 1M."),
+    ("claude-fable-5", "batch price", "input 5.00 / output 25.00 USD per 1M",
+     "Anthropic pricing docs", "https://platform.claude.com/docs/en/about-claude/pricing", "2026-08-17", "2026-08-17",
      "Batch API = 50% off standard."),
     ("claude-fable-5", "long-context / peak-offpeak price", "NA",
      "Anthropic models overview", "https://platform.claude.com/docs/zh-CN/about-claude/models", "2026-08-16", S,
@@ -424,12 +427,12 @@ SOURCES = [
     ("glm-5.2", "context_window", "1048576",
      "Zhipu official pricing / OpenRouter", "https://open.bigmodel.cn/pricing", "2026-08-09", S,
      "1,048,576-token context window."),
-    ("glm-5.2", "max_output_tokens", "128000",
-     "Zhipu pricing mirror (llmcostcalc)", "https://llmcostcalc.com/cloud/zhipu", "2026-08-03", S,
-     "128K max output per official pricing-page mirror; OpenRouter lists 262K (conflict noted in metadata_notes)."),
-    ("glm-5.2", "vision_support", "NA",
-     "Zhipu official pricing", "https://open.bigmodel.cn/pricing", "2026-08-09", S,
-     "Modality not explicitly confirmed (GLM-5.1 documented text-only)."),
+    ("glm-5.2", "max_output_tokens", "131072",
+     "Zhipu GLM-5.2 official model docs", "https://docs.bigmodel.cn/cn/guide/models/text/glm-5.2", "2026-06-16", "2026-08-17",
+     "Official model page specifies 128K maximum output; stored as 128*1024=131072 tokens. Third-party 262K value is rejected."),
+    ("glm-5.2", "vision_support", "no",
+     "Z.ai official model card", "https://huggingface.co/zai-org/GLM-5.2", "2026-08-17", "2026-08-17",
+     "Official Z.ai repository is classified as Text Generation and documents a text-generation pipeline; no image-input modality is listed."),
     ("glm-5.2", "reasoning_support", "yes",
      "Zhipu official pricing", "https://open.bigmodel.cn/pricing", "2026-08-09", S,
      "GLM supports thinking/reasoning mode."),

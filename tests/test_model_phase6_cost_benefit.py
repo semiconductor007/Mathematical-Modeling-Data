@@ -13,7 +13,7 @@ class Phase6CostBenefitTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             output = Path(folder)
             result = compute(output)
-            self.assertEqual(result["budget_rows"], 4)
+            self.assertEqual(result["budget_rows"], 5)
             self.assertGreaterEqual(len(result["frontier"]), 1)
             with (output / "performance_cost.csv").open(encoding="utf-8", newline="") as handle:
                 rows = list(csv.DictReader(handle))

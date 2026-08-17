@@ -10,7 +10,7 @@
 
 - 检索日期：2026-08-16；数据截止：2026-08-17。
 - 候选池：9 个模型、8 家厂商；最终冻结 6 个。DeepSeek、Qwen 与 Gemini 因版本状态或严格可比覆盖不足标为 `excluded`，原始记录继续保留。
-- 原始成绩：143 条 Kimi/OpenAI 对照记录 + 2 条 Artificial Analysis 综合指数记录，共 145 条。
+- 原始成绩：143 条 Kimi/OpenAI 对照记录 + 2 条 Artificial Analysis 综合指数记录 + 3 条 GLM-5.2 官方补充记录，共 148 条。
 - 候选指标池：17 个概念指标（工具/无工具和长上下文档位在原始表中拆行），另保留 Artificial Analysis 综合指数作为筛选辅助。
 - 所有缺失均为 `NA`；没有插补、图读数或自行调用模型测试。
 
@@ -32,7 +32,7 @@
 
 | 维度 | 候选指标 | 当前处理 |
 |---|---|---|
-| 高难推理 | GPQA Diamond、HLE-Full | GPQA 暂列核心候选；HLE 需补 Gemini、GLM 和两款截止日前新模型 |
+| 高难推理 | GPQA Diamond、HLE-Full | GPQA 暂列核心候选；GLM 官方 HLE 已补为独立 cohort，主 cohort 仍缺 GLM，不能跨口径替换 |
 | 数学 | FrontierMath v2 Tier 1–3/Tier 4、MathVision | FrontierMath 为文本数学首选但覆盖不足；MathVision 仅作多模态数学补充 |
 | 代码 | SWE-Bench Pro、DeepSWE v1.1、Terminal-Bench 2.1、FrontierSWE、SciCode | SciCode 暂列核心候选；其余因 agent harness 不同先作补充 |
 | 专业任务 | GDPval-AA v2、Agents' Last Exam、OfficeQA Pro | GDPval-AA v2 暂列核心候选；其余因模型绑定不同 harness 暂作补充 |
@@ -44,6 +44,8 @@
 - `compatible=true` 只表示同一来源、同一版本和同一披露协议下可组成一个队列，不意味着不同厂商的“max/xhigh”消耗相同推理计算量。
 - Terminal-Bench、DeepSWE、FrontierSWE、SWE-Bench Pro、Agents' Last Exam、OfficeQA Pro 因 agent harness 随模型变化，统一标记 `compatible=false`，不得进入严格主排名。
 - HLE、MMMU-Pro、CharXiv、MathVision 的无工具/有工具成绩分别存储，禁止取两者中较高值后混排。
+- GLM-5.2 官方报告的 HLE 40.5、HLE（with tools）54.7、GPQA 91.2 使用 Z.ai 披露设置，独立于 Kimi 对照 cohort；其四项视觉核心指标因官方模型卡仅列文本生成而属于不适用，不是待搜索的普通遗漏。
+- GLM 官方 HLE 记录中的 `max generation=163840` 是开源评测 harness 的生成参数上限，不是第一方 API 产品上限；API/模型元数据仍按官方模型页冻结为 128K（131,072），两种部署口径不混列。
 - 覆盖率脚本已改为按 `benchmark_version + test_setting + source_name` 划分可比队列，避免把同名不同设置合并；同一独立平台的逐模型证据页可以归入同一队列。
 
 ## 来源冲突

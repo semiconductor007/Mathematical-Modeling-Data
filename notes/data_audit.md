@@ -8,7 +8,7 @@
 | 数据集 | 记录数 | 来源记录 | 审计结果 |
 |---|---:|---:|---|
 | 候选模型 | 9（6 final、3 excluded） | 元数据身份来源索引 | 通过 |
-| Benchmark | 145 | 30 | 通过；冲突队列并列保留 |
+| Benchmark | 148 | 31 | 通过；新增 GLM-5.2 官方 HLE/GPQA 独立 cohort，冲突队列并列保留 |
 | 元数据与价格 | 9 | 79 | 通过；逐字段留源 |
 | 效率 | 9（由 27 条 staging 记录提升） | 27 | 通过；逐指标留源 |
 
@@ -26,6 +26,7 @@
 
 - Benchmark 按 `benchmark_version + test_setting + source_name` 分队列；工具/无工具、推理配置、agent harness 不同的成绩不混排。
 - Kimi 与 OpenAI 报告中 GPQA、GDPval-AA 等快照差异并列保留，不选择性取高值。
+- GLM-5.2 官方 HLE 40.5、HLE（with tools）54.7 与 GPQA 91.2 已补录；因来源与测试设置不同，不替换 Kimi 冻结 cohort 的 HLE `NA`。四项视觉核心指标因模型为纯文本标记为结构性不适用。
 - 依赖不同 agent scaffold 的 Terminal-Bench、DeepSWE、FrontierSWE、SWE-Bench Pro、Agents' Last Exam、OfficeQA Pro 不进入核心指标。
 - 效率统一为 Artificial Analysis 默认约 10k input tokens、single prompt、滚动 72 小时 P50；E2E 是标准化 500-token response。
 - Kimi 的未命名配置只称为 “AA default reasoning configuration”。Claude Fable 5 因 Opus fallback、GLM-5.2 因第三方部署与量化未知标为 `compatible=false`，不得进入严格效率横向队列。

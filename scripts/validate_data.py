@@ -139,6 +139,43 @@ def main() -> int:
                 issues.append(f"metadata:{line}: invalid/post-cutoff {field}")
         metadata_keys.append((row.get("model_id"), row.get("exact_version"), row.get("source_url")))
 
+    metadata_by_id = {row["model_id"]: row for row in metadata}
+    required_frozen_metadata = {
+        "gpt-5.6-sol": {
+            "input_price_usd_per_million": "5.0",
+            "output_price_usd_per_million": "30.0",
+            "long_context_price": "10.0",
+        },
+        "kimi-k3": {"max_output_tokens": "1048576"},
+        "claude-fable-5": {
+            "input_price_usd_per_million": "10.0",
+            "output_price_usd_per_million": "50.0",
+            "cached_input_price_usd_per_million": "1.0",
+            "batch_input_price": "5.0",
+            "batch_output_price": "25.0",
+        },
+        "glm-5.2": {"vision_support": "no", "max_output_tokens": "131072"},
+    }
+    for model_id, expected_fields in required_frozen_metadata.items():
+        row = metadata_by_id.get(model_id, {})
+        for field, expected in expected_fields.items():
+            if row.get(field) != expected:
+                issues.append(f"metadata: {model_id}.{field} must equal frozen value {expected}")
+
+    required_glm_scores = {
+        ("HLE-Full (no tools)", "Z.ai GLM-5.2 official launch report"): "40.5",
+        ("HLE-Full (with tools)", "Z.ai GLM-5.2 official launch report"): "54.7",
+        ("GPQA Diamond", "Z.ai GLM-5.2 official launch report"): "91.2",
+    }
+    for key, expected in required_glm_scores.items():
+        matches = [
+            row for row in benchmarks
+            if row.get("model_id") == "glm-5.2"
+            and (row.get("benchmark"), row.get("source_name")) == key
+        ]
+        if len(matches) != 1 or matches[0].get("score") != expected:
+            issues.append(f"benchmark: GLM-5.2 {key[0]} official supplemental score must equal {expected}")
+
     efficiency_keys = []
     for line, row in enumerate(efficiency, start=2):
         for field in ("ttft_seconds", "output_speed_tokens_per_second", "total_latency_seconds"):
@@ -215,6 +252,15 @@ def main() -> int:
             issues.append(f"core_long:{line}: score must be numeric or literal NA")
         if row.get("score") == "NA" and missing(row.get("missing_reason")):
             issues.append(f"core_long:{line}: missing score requires a reason")
+        if (
+            row.get("model_id") == "glm-5.2"
+            and row.get("dimension") in {
+                "multimodal", "document_understanding",
+                "research_document_reasoning", "multimodal_math",
+            }
+            and row.get("missing_reason") != "not applicable: frozen model is text-only"
+        ):
+            issues.append(f"core_long:{line}: GLM visual gap must be marked structurally not applicable")
     if len(processed["model_attributes"]) != len(final_ids):
         issues.append("model_attributes: must contain one row per final model")
     for line, row in enumerate(processed["model_attributes"], start=2):

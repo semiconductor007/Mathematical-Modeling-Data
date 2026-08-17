@@ -16,7 +16,7 @@ DEFAULT_OUTPUT = ROOT / "results/phase6"
 NA = "NA"
 INPUT_MILLION_TOKENS = 1.0
 OUTPUT_MILLION_TOKENS = 0.2
-BUDGETS_USD = (6.0, 10.0, 12.0, 16.0)
+BUDGETS_USD = (6.0, 10.0, 12.0, 16.0, 20.0)
 
 
 def read_rows(path: Path) -> list[dict[str, str]]:
