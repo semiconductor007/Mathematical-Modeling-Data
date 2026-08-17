@@ -22,6 +22,23 @@
 
 详细、可验收的任务清单见 [TASKS.md](TASKS.md)。
 
+## Member B 数据交付与验收
+
+Member B 的数据以 Member A 的候选池为唯一身份基准，并在纳入后续合并前接受 Member C 的配置审计。当前 9 个候选模型的 `model_id`、`model_name`、`provider`、`exact_version` 与 `release_date` 已同 [data/model_candidates.csv](data/model_candidates.csv) 对齐；缺失或未能由一手来源确认的字段统一写为 `NA`，不作估算。
+
+- [x] **精确版本与提供商**：逐模型登记精确名称、API/版本标识、发布日期和提供商，Kimi K3 保持在候选池中。
+- [x] **官方工程元数据**：登记 context window、最大输出、图像输入、reasoning 支持与 API availability；每个字段的证据见 [data/sources/metadata_sources.csv](data/sources/metadata_sources.csv)。
+- [x] **API 价格与条件**：按 **USD / 1M tokens** 登记标准输入/输出、缓存输入、Batch、长上下文和峰谷价格；地区、上下文分档、缓存条件与生效日期写入原始表备注，未披露项为 `NA`。
+- [x] **来源整理**：逐字段来源、发布日期、检索日期、来源 URL 与解释性备注见 [data/sources/metadata_sources.csv](data/sources/metadata_sources.csv)；价格历史、汇率换算、来源冲突和字段歧义见 [notes/metadata_notes.md](notes/metadata_notes.md)。
+- [x] **论文数据章节**：可直接引用的候选版本、工程元数据、API 价格、来源方法和待确认事项见 [paper/data_chapter_b.md](paper/data_chapter_b.md)。
+
+### 与 A、C 数据的衔接规则
+
+- 与 Member A：仅以完全相同的 `model_id` 合并；不得用同系列、显示名或大小写近似替代精确版本。
+- 与 Member C：API 元数据不替代效率测量。效率数据必须保留 provider、reasoning effort、fallback、量化/部署和滚动窗口等配置；状态为 HOLD 的配置不自动进入核心模型。
+- 条件价格不得压缩为无条件单值：OpenAI 长上下文、Gemini prompt 长度分档、DeepSeek 峰谷计费，以及 GLM 的人民币原始定价与 USD 换算均保留条件和说明。
+- 已知争议（Kimi K3 最大输出的二级来源、GLM-5.2 最大输出冲突、GPT-5.6 Sol 长上下文价格）在 [notes/metadata_notes.md](notes/metadata_notes.md) 标记为待确认，不得被当作无争议核心数据。
+
 ## 目录
 
 ```text
@@ -35,7 +52,7 @@ scripts/                     覆盖率、校验和合并工具
 notes/                       调研记录与审计意见
 figures/                     图表输出
 results/                     模型结果输出
-paper/                       论文材料
+paper/                       论文材料（含 data_chapter_b.md）
 ```
 
 ## Git 工作流
