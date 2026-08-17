@@ -15,6 +15,7 @@ COMMANDS = [
     ["scripts/check_coverage.py", "--output", "results/benchmark_coverage.csv"],
     ["scripts/analyze_phase3_indicators.py"],
     ["scripts/model_phase4_critic_topsis.py"],
+    ["scripts/run_glm_supplement.py"],
     ["scripts/model_phase5_scenarios.py"],
     ["scripts/model_phase6_cost_benefit.py"],
     ["scripts/analyze_phase7_robustness.py"],

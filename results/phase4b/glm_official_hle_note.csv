@@ -1,0 +1,2 @@
+﻿model_id,model,benchmark,official_score,score_unit,source_name,source_url,test_setting,directly_comparable_to_frozen_cohort,usage_rule
+glm-5.2,GLM-5.2,HLE-Full (no tools),40.5,percent,Z.ai GLM-5.2 official launch report,https://z.ai/blog/glm-5.2,Z.ai official evaluation; text-only subset; temperature=1.0; top_p=0.95; max generation=163840; no tools,False,qualitative_scale_reference_only; never fill frozen-cohort NA or assign rank

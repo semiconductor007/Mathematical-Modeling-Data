@@ -85,11 +85,14 @@ python scripts/process_phase2_data.py
 python scripts/merge_data.py --final-only
 python scripts/run_pipeline.py
 python scripts/run_q1.py
+python scripts/run_glm_supplement.py
 python scripts/validate_q1.py
 python scripts/run_q2.py
 python scripts/run_q3.py
 python scripts/validate_q2_q3.py
 python -m unittest discover -s tests -v
+python scripts/build_paper.py
+python scripts/validate_paper.py
 ```
 
-基础 Phase 2–7 脚本仅使用 Python 标准库；问题1论文交付流水线使用 `requirements.txt` 中的 NumPy、pandas 和 Matplotlib 生成 300 dpi PNG。`run_pipeline.py` 可重建原有 Phase 2–7 结果，`run_q1.py` 可一次生成 `results/q1/` 与 `docs/` 下的问题1结果；任何脚本都不会删除 `NA` 或自行补值。完整报告见 `paper/modeling_report.md`。
+基础 Phase 2–7 脚本主要使用 Python 标准库；论文交付流水线使用 `requirements.txt` 中的 NumPy、pandas、Matplotlib 和 PyMuPDF，并由 Pandoc/XeLaTeX 生成 PDF。`run_pipeline.py` 会在 Phase 4 后生成 GLM-5.2 同口径局部对照；任何脚本都不会删除 `NA` 或自行补值。原始题面见 `references/problem/TJMML_B.pdf`，逐题符合性矩阵见 `docs/problem_compliance_matrix.md`，完整报告见 `paper/modeling_report.md`。
