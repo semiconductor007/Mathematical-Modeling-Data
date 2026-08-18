@@ -93,6 +93,8 @@ python scripts/validate_q2_q3.py
 python -m unittest discover -s tests -v
 python scripts/build_paper.py
 python scripts/validate_paper.py
+python scripts/build_competition_paper.py
+python scripts/validate_competition_paper.py
 ```
 
 基础 Phase 2–7 脚本主要使用 Python 标准库；论文交付流水线使用 `requirements.txt` 中的 NumPy、pandas、Matplotlib 和 PyMuPDF，并由 Pandoc/XeLaTeX 生成 PDF。`run_pipeline.py` 会在 Phase 4 后生成 GLM-5.2 同口径局部对照；任何脚本都不会删除 `NA` 或自行补值。原始题面见 `references/problem/TJMML_B.pdf`，逐题符合性矩阵见 `docs/problem_compliance_matrix.md`，完整报告见 `paper/modeling_report.md`。
