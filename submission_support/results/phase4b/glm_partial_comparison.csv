@@ -1,0 +1,5 @@
+﻿metric,indicator,glm_score,score_unit,rank_among_six,models_compared,leader_model_id,leader_model,leader_score,gap_to_leader,relative_gap_to_leader_percent,comparison_scope
+gpqa_diamond,GPQA Diamond,91.2,percent,5,6,gpt-5.6-sol,GPT-5.6 Sol,94.1,2.8999999999999915,3.081827842720501,frozen_main_cohort_directly_comparable
+aa_lcr,AA-LCR,71.3,percent,4,6,kimi-k3,Kimi K3,74.7,3.4000000000000057,4.551539491298535,frozen_main_cohort_directly_comparable
+scicode,SciCode,50.5,percent,6,6,claude-fable-5,Claude Fable 5,60.2,9.700000000000003,16.112956810631232,frozen_main_cohort_directly_comparable
+gdpval_aa_v2,GDPval-AA v2,1510.0,elo,5,6,claude-fable-5,Claude Fable 5,1747.0,237.0,13.5661133371494,frozen_main_cohort_directly_comparable

@@ -1,0 +1,10 @@
+indicator_key,dimension,indicator,score_unit,higher_is_better,available_models,final_models,coverage_percent,missing_model_ids,cohort_status
+gpqa_diamond,high_difficulty_reasoning,GPQA Diamond,percent,true,6,6,100.0,NA,pass
+hle_full_no_tools,high_difficulty_reasoning,HLE-Full,percent,true,5,6,83.3,glm-5.2,pass
+aa_lcr,long_context,AA-LCR,percent,true,6,6,100.0,NA,pass
+scicode,coding,SciCode,percent,true,6,6,100.0,NA,pass
+gdpval_aa_v2,professional_tasks,GDPval-AA v2,elo,true,6,6,100.0,NA,pass
+mmmu_pro_no_tools,multimodal,MMMU-Pro,percent,true,5,6,83.3,glm-5.2,pass
+omnidocbench,document_understanding,OmniDocBench,percent,true,5,6,83.3,glm-5.2,pass
+charxiv_rq_no_tools,research_document_reasoning,CharXiv RQ,percent,true,5,6,83.3,glm-5.2,pass
+mathvision_no_tools,multimodal_math,MathVision,percent,true,5,6,83.3,glm-5.2,pass

@@ -1,0 +1,7 @@
+﻿model_id,model,standard_workload_cost_usd,q1_performance_score,q1_rank,ranking_status,analysis_status,performance_per_usd,cost_rank_among_ranked,value_rank_among_ranked,cost_benefit_index
+kimi-k3,Kimi K3,6.0,0.5933487598115498,2.0,ranked_complete_case,included_ranked_model,0.09889145996859162,1.0,1.0,1.0
+gpt-5.6-sol,GPT-5.6 Sol,11.0,0.5177743844554258,3.0,ranked_complete_case,included_ranked_model,0.04707039858685689,4.0,3.0,0.6428571428571429
+claude-fable-5,Claude Fable 5,20.0,0.7253547227384795,1.0,ranked_complete_case,included_ranked_model,0.036267736136923974,5.0,5.0,0.0
+claude-opus-4.8,Claude Opus 4.8,10.0,0.3901637083909933,5.0,ranked_complete_case,included_ranked_model,0.039016370839099326,3.0,4.0,0.7142857142857143
+gpt-5.5,GPT-5.5,6.0,0.4409692386550848,4.0,ranked_complete_case,included_ranked_model,0.0734948731091808,1.0,2.0,1.0
+glm-5.2,GLM-5.2,1.918,NA,NA,not_ranked_insufficient_coverage,excluded_insufficient_q1_coverage,NA,NA,NA,NA

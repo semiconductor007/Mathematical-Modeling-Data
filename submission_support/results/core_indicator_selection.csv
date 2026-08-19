@@ -1,0 +1,10 @@
+dimension,indicator,benchmark_version,tool_policy,higher_is_better,best_comparable_models,final_models,coverage,status,rationale
+high_difficulty_reasoning,GPQA Diamond,2023 release / Diamond subset,no_tools,true,6,6,100.0%,core,Scientific reasoning anchor with one six-model disclosed comparison cohort
+high_difficulty_reasoning,HLE-Full,HLE-Full,no_tools,true,5,6,83.3%,core,Hard general reasoning; GLM-5.2 is NA and no imputation is used
+long_context,AA-LCR,AA Intelligence Index snapshot 2026-07-23,no_tools,true,6,6,100.0%,core,Independent-platform long-context reasoning indicator
+coding,SciCode,AA snapshot 2026-07-23,no_tools,true,6,6,100.0%,core,Unified coding/scientific programming indicator without mixed agent harnesses
+professional_tasks,GDPval-AA v2,AA snapshot 2026-07-23,no_tools,true,6,6,100.0%,core,Independent real-world economically valuable task Elo snapshot
+multimodal,MMMU-Pro,official protocol,no_tools,true,5,6,83.3%,core,Broad multimodal reasoning; no-tool variant prevents tool advantage mixing
+document_understanding,OmniDocBench,K3 report protocol,no_tools,true,5,6,83.3%,core,Document perception and understanding; GLM-5.2 is NA
+research_document_reasoning,CharXiv RQ,K3 report protocol,no_tools,true,5,6,83.3%,core,Research chart and long-document reasoning; no-tool variant selected
+multimodal_math,MathVision,K3 report protocol,no_tools,true,5,6,83.3%,core,Multimodal mathematical reasoning; retained separately from text-only reasoning

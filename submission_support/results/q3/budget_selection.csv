@@ -1,0 +1,6 @@
+﻿budget_level,budget_limit_usd,feasible_models,recommended_model_id,recommended_model,performance,cost_usd,unused_budget_usd,selection_rule
+6.0,6.0,2,kimi-k3,Kimi K3,0.5933487598115498,6.0,0.0,预算内Q1 TOPSIS得分最高；不含Q1未排名模型
+10.0,10.0,3,kimi-k3,Kimi K3,0.5933487598115498,6.0,4.0,预算内Q1 TOPSIS得分最高；不含Q1未排名模型
+12.0,12.0,4,kimi-k3,Kimi K3,0.5933487598115498,6.0,6.0,预算内Q1 TOPSIS得分最高；不含Q1未排名模型
+16.0,16.0,4,kimi-k3,Kimi K3,0.5933487598115498,6.0,10.0,预算内Q1 TOPSIS得分最高；不含Q1未排名模型
+20.0,20.0,5,claude-fable-5,Claude Fable 5,0.7253547227384795,20.0,0.0,预算内Q1 TOPSIS得分最高；不含Q1未排名模型

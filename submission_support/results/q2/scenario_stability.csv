@@ -1,0 +1,16 @@
+﻿scenario,scenario_name,model_id,baseline_rank,minimum_rank,maximum_rank,mean_rank,rank_std,top1_probability,top3_probability,minimum_kendall_tau,scenarios
+code_development,计算机代码开发,claude-fable-5,1,1,1,1.0,0.0,1.0,1.0,1.0,36
+code_development,计算机代码开发,claude-opus-4.8,5,5,5,5.0,0.0,0.0,0.0,1.0,36
+code_development,计算机代码开发,gpt-5.5,4,4,4,4.0,0.0,0.0,0.0,1.0,36
+code_development,计算机代码开发,gpt-5.6-sol,3,3,3,3.0,0.0,0.0,1.0,1.0,36
+code_development,计算机代码开发,kimi-k3,2,2,2,2.0,0.0,0.0,1.0,1.0,36
+daily_dialogue,大众日常通用对话,claude-fable-5,1,1,1,1.0,0.0,1.0,1.0,1.0,36
+daily_dialogue,大众日常通用对话,claude-opus-4.8,5,5,5,5.0,0.0,0.0,0.0,1.0,36
+daily_dialogue,大众日常通用对话,gpt-5.5,4,4,4,4.0,0.0,0.0,0.0,1.0,36
+daily_dialogue,大众日常通用对话,gpt-5.6-sol,3,3,3,3.0,0.0,0.0,1.0,1.0,36
+daily_dialogue,大众日常通用对话,kimi-k3,2,2,2,2.0,0.0,0.0,1.0,1.0,36
+research_long_text,科研长文本分析,claude-fable-5,2,1,2,1.8888888888888888,0.31426968052735454,0.1111111111111111,1.0,0.8,36
+research_long_text,科研长文本分析,claude-opus-4.8,5,5,5,5.0,0.0,0.0,0.0,0.8,36
+research_long_text,科研长文本分析,gpt-5.5,4,4,4,4.0,0.0,0.0,0.0,0.8,36
+research_long_text,科研长文本分析,gpt-5.6-sol,3,3,3,3.0,0.0,0.0,1.0,0.8,36
+research_long_text,科研长文本分析,kimi-k3,1,1,2,1.1111111111111112,0.31426968052735454,0.8888888888888888,1.0,0.8,36

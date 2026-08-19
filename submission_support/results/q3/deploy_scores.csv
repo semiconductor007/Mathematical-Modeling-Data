@@ -1,0 +1,7 @@
+﻿model_id,model,ttft_benefit_score,speed_benefit_score,latency_benefit_score,engineering_efficiency_score,q1_performance_score,deployment_score,efficiency_rank,deployment_rank,analysis_status
+kimi-k3,Kimi K3,1.0,0.0,0.7086225195816902,0.5695408398605634,0.5933487598115498,0.5862063838262539,3.0,1.0,included_compatible_efficiency
+gpt-5.6-sol,GPT-5.6 Sol,0.0,0.6848883454688962,0.0,0.22829611515629875,0.5177743844554258,0.43093090366568765,4.0,4.0,included_compatible_efficiency
+claude-fable-5,Claude Fable 5,NA,NA,NA,NA,NA,NA,NA,NA,excluded_incompatible_or_missing_performance
+claude-opus-4.8,Claude Opus 4.8,0.8469037724324758,0.4315999052065062,1.0,0.7595012258796606,0.3901637083909933,0.5009649636375935,2.0,3.0,included_compatible_efficiency
+gpt-5.5,GPT-5.5,0.6764383320524882,1.0,0.8186595185014398,0.8316992835179761,0.4409692386550848,0.5581882521139522,1.0,2.0,included_compatible_efficiency
+glm-5.2,GLM-5.2,NA,NA,NA,NA,NA,NA,NA,NA,excluded_incompatible_or_missing_performance

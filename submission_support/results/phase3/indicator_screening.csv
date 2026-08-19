@@ -1,0 +1,10 @@
+indicator_key,dimension,indicator,coverage_percent,variation_nonzero,high_correlation_flag,phase3_decision,reason
+gpqa_diamond,high_difficulty_reasoning,GPQA Diamond,100.0,true,true,retain,"Coverage >=75%, nonzero variation, and distinct substantive dimension; high correlations are not used for automatic deletion with n=6"
+hle_full_no_tools,high_difficulty_reasoning,HLE-Full,83.3,true,false,retain,"Coverage >=75%, nonzero variation, and distinct substantive dimension; high correlations are not used for automatic deletion with n=6"
+aa_lcr,long_context,AA-LCR,100.0,true,false,retain,"Coverage >=75%, nonzero variation, and distinct substantive dimension; high correlations are not used for automatic deletion with n=6"
+scicode,coding,SciCode,100.0,true,true,retain,"Coverage >=75%, nonzero variation, and distinct substantive dimension; high correlations are not used for automatic deletion with n=6"
+gdpval_aa_v2,professional_tasks,GDPval-AA v2,100.0,true,false,retain,"Coverage >=75%, nonzero variation, and distinct substantive dimension; high correlations are not used for automatic deletion with n=6"
+mmmu_pro_no_tools,multimodal,MMMU-Pro,83.3,true,true,retain,"Coverage >=75%, nonzero variation, and distinct substantive dimension; high correlations are not used for automatic deletion with n=6"
+omnidocbench,document_understanding,OmniDocBench,83.3,true,false,retain,"Coverage >=75%, nonzero variation, and distinct substantive dimension; high correlations are not used for automatic deletion with n=6"
+charxiv_rq_no_tools,research_document_reasoning,CharXiv RQ,83.3,true,true,retain,"Coverage >=75%, nonzero variation, and distinct substantive dimension; high correlations are not used for automatic deletion with n=6"
+mathvision_no_tools,multimodal_math,MathVision,83.3,true,false,retain,"Coverage >=75%, nonzero variation, and distinct substantive dimension; high correlations are not used for automatic deletion with n=6"

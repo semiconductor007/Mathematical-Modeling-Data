@@ -1,0 +1,6 @@
+﻿model_id,model,q1_performance_score,standard_workload_cost_usd,pareto_status,is_pareto_frontier,dominated_by_model_ids,dominated_by_models
+kimi-k3,Kimi K3,0.5933487598115498,6.0,frontier,True,,
+gpt-5.5,GPT-5.5,0.4409692386550848,6.0,dominated,False,kimi-k3,Kimi K3
+claude-opus-4.8,Claude Opus 4.8,0.3901637083909933,10.0,dominated,False,kimi-k3;gpt-5.5,Kimi K3；GPT-5.5
+gpt-5.6-sol,GPT-5.6 Sol,0.5177743844554258,11.0,dominated,False,kimi-k3,Kimi K3
+claude-fable-5,Claude Fable 5,0.7253547227384795,20.0,frontier,True,,

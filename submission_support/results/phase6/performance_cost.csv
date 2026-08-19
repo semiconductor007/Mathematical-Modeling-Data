@@ -1,0 +1,7 @@
+model_id,model_name,workload_input_million_tokens,workload_output_million_tokens,standardized_api_cost_usd,general_performance_score,performance_per_usd,pareto_frontier,analysis_status
+kimi-k3,Kimi K3,1.0,0.2,6.0000,0.5933487598,0.0988914600,true,included
+gpt-5.6-sol,GPT-5.6 Sol,1.0,0.2,11.0000,0.5177743845,0.0470703986,false,included
+claude-fable-5,Claude Fable 5,1.0,0.2,20.0000,0.7253547227,0.0362677361,true,included
+claude-opus-4.8,Claude Opus 4.8,1.0,0.2,10.0000,0.3901637084,0.0390163708,false,included
+gpt-5.5,GPT-5.5,1.0,0.2,6.0000,0.4409692387,0.0734948731,false,included
+glm-5.2,GLM-5.2,1.0,0.2,1.9180,NA,NA,NA,excluded_missing_performance_rank

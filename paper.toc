@@ -1,0 +1,37 @@
+\contentsline {section}{\numberline {1}问题重述与分析}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}问题重述}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}问题分析}{3}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}问题一分析}{3}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}问题二分析}{3}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}问题三分析}{4}{subsubsection.1.2.3}%
+\contentsline {section}{\numberline {2}模型假设与数据边界}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}符号说明}{4}{subsection.2.1}%
+\contentsline {section}{\numberline {3}数据来源、模型池与核心指标}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}候选模型筛选}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}潜在指标池与核心指标筛选}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}数据来源与缺失处理}{7}{subsection.3.3}%
+\contentsline {section}{\numberline {4}问题一：CRITIC--TOPSIS 综合评价}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}相关性与指标保留}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}CRITIC 客观赋权}{8}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}TOPSIS 综合评价}{10}{subsection.4.3}%
+\contentsline {paragraph}{GLM-5.2 局部观察。}{11}{paragraph*.14}%
+\contentsline {section}{\numberline {5}问题二：三类场景评价}{12}{section.5}%
+\contentsline {subsection}{\numberline {5.1}场景权重构造}{12}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}跨场景排名差异的内在机理}{14}{subsection.5.2}%
+\contentsline {section}{\numberline {6}问题三：性能--成本与部署效率}{15}{section.6}%
+\contentsline {subsection}{\numberline {6.1}货币成本和 Pareto 前沿}{15}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}算力能耗数据边界}{17}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}严格可比部署效率子分析}{17}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}成本--性能探索性关系}{18}{subsection.6.4}%
+\contentsline {section}{\numberline {7}稳健性分析}{19}{section.7}%
+\contentsline {subsection}{\numberline {7.1}方法与参数稳健性}{19}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}样本集合敏感性检验}{19}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}场景组合系数敏感性}{20}{subsection.7.3}%
+\contentsline {section}{\numberline {8}模型评价与局限}{21}{section.8}%
+\contentsline {subsection}{\numberline {8.1}方法特点}{21}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}局限性}{21}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}改进方向}{22}{subsection.8.3}%
+\contentsline {section}{\numberline {9}结论与建议}{22}{section.9}%
+\contentsline {section}{\numberline {10}AI 工具使用声明}{22}{section.10}%
+\contentsline {section}{\numberline {A}支撑材料文件清单}{24}{appendix.A}%
+\contentsline {section}{\numberline {B}完整源程序代码}{29}{appendix.B}%

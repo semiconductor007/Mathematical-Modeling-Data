@@ -1,0 +1,7 @@
+﻿scenario,scenario_name,model_id,model,q1_rank,distance_positive,distance_negative,topsis_score,rank,rank_change_vs_q1,rank_improvement_vs_q1,ranking_status
+code_development,计算机代码开发,claude-fable-5,Claude Fable 5,1.0,0.09643150317338502,0.3269385643142297,0.7722288121462294,1.0,0.0,0.0,ranked_complete_case
+code_development,计算机代码开发,kimi-k3,Kimi K3,2.0,0.1324596672075786,0.2867476443664188,0.6840234806252965,2.0,0.0,0.0,ranked_complete_case
+code_development,计算机代码开发,gpt-5.6-sol,GPT-5.6 Sol,3.0,0.17788707149288804,0.24956831861352083,0.5838464653619045,3.0,0.0,0.0,ranked_complete_case
+code_development,计算机代码开发,gpt-5.5,GPT-5.5,4.0,0.2186847542097532,0.20978886196806384,0.48961908982746144,4.0,0.0,0.0,ranked_complete_case
+code_development,计算机代码开发,claude-opus-4.8,Claude Opus 4.8,5.0,0.26845009030506306,0.13728959449141523,0.3383686625583115,5.0,0.0,0.0,ranked_complete_case
+code_development,计算机代码开发,glm-5.2,GLM-5.2,NA,NA,NA,NA,NA,NA,NA,not_ranked_insufficient_coverage

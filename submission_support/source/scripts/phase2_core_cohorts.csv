@@ -1,0 +1,10 @@
+indicator_key,dimension,indicator,raw_benchmark,benchmark_version,test_setting,source_name,higher_is_better
+gpqa_diamond,high_difficulty_reasoning,GPQA Diamond,GPQA Diamond,2023 release / Diamond subset,K3 report: highest disclosed effort; no tools; temperature=1.0; top_p=0.95,Kimi K3 official technical report,true
+hle_full_no_tools,high_difficulty_reasoning,HLE-Full,HLE-Full (no tools),HLE-Full,K3 report: first value; no tools; highest disclosed effort; temperature=1.0; top_p=0.95,Kimi K3 official technical report,true
+aa_lcr,long_context,AA-LCR,AA-LCR,AA Intelligence Index snapshot 2026-07-23,Artificial Analysis unified evaluation as cited by K3 report; snapshot 2026-07-23,Kimi K3 official technical report,true
+scicode,coding,SciCode,SciCode,AA snapshot 2026-07-23,Artificial Analysis unified evaluation as cited by K3 report; snapshot 2026-07-23,Kimi K3 official technical report,true
+gdpval_aa_v2,professional_tasks,GDPval-AA v2,GDPval-AA v2,AA snapshot 2026-07-23,Artificial Analysis unified leaderboard as cited by K3 report; human baseline=1000,Kimi K3 official technical report,true
+mmmu_pro_no_tools,multimodal,MMMU-Pro,MMMU-Pro (no tools),official protocol,Official protocol; original input order; image prepended; three-run average; no tools,Kimi K3 official technical report,true
+omnidocbench,document_understanding,OmniDocBench,OmniDocBench,K3 report protocol,K3 report multimodal protocol; average of three runs; no tools,Kimi K3 official technical report,true
+charxiv_rq_no_tools,research_document_reasoning,CharXiv RQ,CharXiv RQ (no tools),K3 report protocol,K3 report multimodal protocol; average of three runs; no tools,Kimi K3 official technical report,true
+mathvision_no_tools,multimodal_math,MathVision,MathVision (no tools),K3 report protocol,K3 report multimodal protocol; average of three runs; no tools,Kimi K3 official technical report,true

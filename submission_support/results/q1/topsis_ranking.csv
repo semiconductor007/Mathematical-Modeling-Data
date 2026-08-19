@@ -1,0 +1,7 @@
+﻿model,model_id,available_indicators,total_indicators,coverage_percent,distance_positive,distance_negative,topsis_score,rank,ranking_status
+Claude Fable 5,claude-fable-5,9,9,100.0,0.11238014982141487,0.2968027458101933,0.7253547227384795,1.0,ranked_complete_case
+Kimi K3,kimi-k3,9,9,100.0,0.17630388202610536,0.2572467003953393,0.5933487598115498,2.0,ranked_complete_case
+GPT-5.6 Sol,gpt-5.6-sol,9,9,100.0,0.21614793865625828,0.23208195973303367,0.5177743844554258,3.0,ranked_complete_case
+GPT-5.5,gpt-5.5,9,9,100.0,0.24854758777136082,0.19605690442761137,0.4409692386550848,4.0,ranked_complete_case
+Claude Opus 4.8,claude-opus-4.8,9,9,100.0,0.25320211689254357,0.1619947488507021,0.39016370839099335,5.0,ranked_complete_case
+GLM-5.2,glm-5.2,4,9,44.44444444444444,NA,NA,NA,NA,not_ranked_insufficient_coverage

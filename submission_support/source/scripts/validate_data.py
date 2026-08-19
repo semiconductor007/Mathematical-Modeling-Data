@@ -1,0 +1,298 @@
+"""Validate raw CSV files and report issues without modifying data."""
+
+from __future__ import annotations
+
+import csv
+import math
+from collections import Counter, defaultdict
+from datetime import date
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+NA_VALUES = {"", "na", "n/a", "null", "none"}
+DATA_CUTOFF_DATE = date.fromisoformat("2026-08-17")
+
+FILES = {
+    "candidates": ROOT / "data/model_candidates.csv",
+    "benchmark": ROOT / "data/raw/benchmark_scores.csv",
+    "metadata": ROOT / "data/raw/model_metadata.csv",
+    "efficiency": ROOT / "data/raw/cost_efficiency.csv",
+}
+SOURCE_FILES = {
+    "benchmark_sources": ROOT / "data/sources/benchmark_sources.csv",
+    "metadata_sources": ROOT / "data/sources/metadata_sources.csv",
+    "efficiency_sources": ROOT / "data/sources/efficiency_sources.csv",
+}
+CORE_SELECTION = ROOT / "results/core_indicator_selection.csv"
+PROCESSED_FILES = {
+    "core_matrix": ROOT / "data/processed/core_benchmark_matrix.csv",
+    "core_long": ROOT / "data/processed/core_benchmark_long.csv",
+    "model_attributes": ROOT / "data/processed/model_attributes.csv",
+    "indicator_quality": ROOT / "data/processed/indicator_quality.csv",
+    "quality_report": ROOT / "data/processed/phase2_quality_report.csv",
+}
+
+
+def missing(value: str | None) -> bool:
+    return value is None or value.strip().lower() in NA_VALUES
+
+
+def read_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        return reader.fieldnames or [], list(reader)
+
+
+def numeric_or_na(value: str | None) -> bool:
+    if value is None or not value.strip():
+        return False
+    if value.strip() == "NA":
+        return True
+    try:
+        return math.isfinite(float(value))
+    except (TypeError, ValueError):
+        return False
+
+
+def validate_date(value: str | None) -> bool:
+    if missing(value):
+        return False
+    try:
+        return date.fromisoformat(value.strip()) <= DATA_CUTOFF_DATE
+    except ValueError:
+        return False
+
+
+def date_or_na(value: str | None) -> bool:
+    return value == "NA" or validate_date(value)
+
+
+def main() -> int:
+    issues: list[str] = []
+    for label, path in (FILES | SOURCE_FILES | PROCESSED_FILES).items():
+        if not path.exists():
+            issues.append(f"{label}: missing file {path}")
+    if not CORE_SELECTION.exists():
+        issues.append(f"core_selection: missing file {CORE_SELECTION}")
+    if issues:
+        print("\n".join(f"ERROR: {item}" for item in issues))
+        return 1
+
+    _, candidates = read_csv(FILES["candidates"])
+    _, benchmarks = read_csv(FILES["benchmark"])
+    _, metadata = read_csv(FILES["metadata"])
+    _, efficiency = read_csv(FILES["efficiency"])
+    source_tables = {label: read_csv(path)[1] for label, path in SOURCE_FILES.items()}
+    _, core_selection = read_csv(CORE_SELECTION)
+    processed = {label: read_csv(path)[1] for label, path in PROCESSED_FILES.items()}
+
+    candidate_ids = {r.get("model_id", "").strip() for r in candidates if not missing(r.get("model_id"))}
+    if len(candidate_ids) != len([r for r in candidates if not missing(r.get("model_id"))]):
+        issues.append("candidates: duplicate model_id")
+    allowed_statuses = {"pending", "likely", "excluded", "final"}
+    for line, row in enumerate(candidates, start=2):
+        if row.get("candidate_status") not in allowed_statuses:
+            issues.append(f"candidates:{line}: invalid candidate_status")
+        if not validate_date(row.get("release_date")):
+            issues.append(f"candidates:{line}: invalid/post-cutoff release_date")
+    final_ids = {r["model_id"] for r in candidates if r.get("candidate_status") == "final"}
+    if not 6 <= len(final_ids) <= 8:
+        issues.append(f"candidates: final model count must be 6-8, got {len(final_ids)}")
+    if "kimi-k3" not in final_ids:
+        issues.append("candidates: kimi-k3 must be final")
+
+    versions: dict[str, set[str]] = defaultdict(set)
+    for label, rows in (("benchmark", benchmarks), ("metadata", metadata), ("efficiency", efficiency)):
+        for line, row in enumerate(rows, start=2):
+            model_id = row.get("model_id", "").strip()
+            if missing(model_id) or model_id not in candidate_ids:
+                issues.append(f"{label}:{line}: model_id is missing or absent from candidates: {model_id or 'NA'}")
+            model_name = row.get("model_name", "").strip()
+            version = row.get("exact_version", "").strip()
+            if model_name and version and not missing(version):
+                versions[model_name].add(version)
+
+    benchmark_keys = []
+    for line, row in enumerate(benchmarks, start=2):
+        if not numeric_or_na(row.get("score")):
+            issues.append(f"benchmark:{line}: score must be numeric or NA")
+        for field in ("source_url", "retrieval_date", "benchmark_version"):
+            if missing(row.get(field)):
+                issues.append(f"benchmark:{line}: {field} is required")
+        if not missing(row.get("retrieval_date")) and not validate_date(row.get("retrieval_date")):
+            issues.append(f"benchmark:{line}: invalid/post-cutoff retrieval_date")
+        benchmark_keys.append((row.get("model_id"), row.get("benchmark"), row.get("benchmark_version"), row.get("test_setting"), row.get("source_url")))
+
+    price_fields = ("input_price_usd_per_million", "output_price_usd_per_million", "cached_input_price_usd_per_million", "batch_input_price", "batch_output_price", "long_context_price", "peak_price", "off_peak_price")
+    metadata_keys = []
+    for line, row in enumerate(metadata, start=2):
+        for field in price_fields + ("context_window", "max_output_tokens"):
+            if not numeric_or_na(row.get(field)):
+                issues.append(f"metadata:{line}: {field} must be numeric or NA")
+        for field in ("source_url", "retrieval_date", "exact_version"):
+            if missing(row.get(field)):
+                issues.append(f"metadata:{line}: {field} is required")
+        if any(not missing(row.get(field)) for field in price_fields) and missing(row.get("pricing_effective_date")):
+            issues.append(f"metadata:{line}: pricing_effective_date required when a price exists")
+        for field in ("retrieval_date", "pricing_effective_date"):
+            if not date_or_na(row.get(field)):
+                issues.append(f"metadata:{line}: invalid/post-cutoff {field}")
+        metadata_keys.append((row.get("model_id"), row.get("exact_version"), row.get("source_url")))
+
+    metadata_by_id = {row["model_id"]: row for row in metadata}
+    required_frozen_metadata = {
+        "gpt-5.6-sol": {
+            "input_price_usd_per_million": "5.0",
+            "output_price_usd_per_million": "30.0",
+            "long_context_price": "10.0",
+        },
+        "kimi-k3": {"max_output_tokens": "1048576"},
+        "claude-fable-5": {
+            "input_price_usd_per_million": "10.0",
+            "output_price_usd_per_million": "50.0",
+            "cached_input_price_usd_per_million": "1.0",
+            "batch_input_price": "5.0",
+            "batch_output_price": "25.0",
+        },
+        "glm-5.2": {"vision_support": "no", "max_output_tokens": "131072"},
+    }
+    for model_id, expected_fields in required_frozen_metadata.items():
+        row = metadata_by_id.get(model_id, {})
+        for field, expected in expected_fields.items():
+            if row.get(field) != expected:
+                issues.append(f"metadata: {model_id}.{field} must equal frozen value {expected}")
+
+    required_glm_scores = {
+        ("HLE-Full (no tools)", "Z.ai GLM-5.2 official launch report"): "40.5",
+        ("HLE-Full (with tools)", "Z.ai GLM-5.2 official launch report"): "54.7",
+        ("GPQA Diamond", "Z.ai GLM-5.2 official launch report"): "91.2",
+    }
+    for key, expected in required_glm_scores.items():
+        matches = [
+            row for row in benchmarks
+            if row.get("model_id") == "glm-5.2"
+            and (row.get("benchmark"), row.get("source_name")) == key
+        ]
+        if len(matches) != 1 or matches[0].get("score") != expected:
+            issues.append(f"benchmark: GLM-5.2 {key[0]} official supplemental score must equal {expected}")
+
+    efficiency_keys = []
+    for line, row in enumerate(efficiency, start=2):
+        for field in ("ttft_seconds", "output_speed_tokens_per_second", "total_latency_seconds"):
+            if not numeric_or_na(row.get(field)):
+                issues.append(f"efficiency:{line}: {field} must be numeric or NA")
+        for field in ("source_url", "retrieval_date"):
+            if missing(row.get(field)):
+                issues.append(f"efficiency:{line}: {field} is required")
+        if row.get("compatible") not in {"true", "false"}:
+            issues.append(f"efficiency:{line}: compatible must be true or false")
+        if not date_or_na(row.get("measurement_date")):
+            issues.append(f"efficiency:{line}: invalid/post-cutoff measurement_date")
+        if not validate_date(row.get("retrieval_date")):
+            issues.append(f"efficiency:{line}: invalid/post-cutoff retrieval_date")
+        efficiency_keys.append((row.get("model_id"), row.get("platform"), row.get("measurement_date"), row.get("test_setting"), row.get("source_url")))
+
+    for label, rows in source_tables.items():
+        seen = []
+        for line, row in enumerate(rows, start=2):
+            if not row.get("source_url", row.get("url", "")).startswith("https://"):
+                issues.append(f"{label}:{line}: direct HTTPS source URL is required")
+            if not validate_date(row.get("retrieval_date")):
+                issues.append(f"{label}:{line}: invalid/post-cutoff retrieval_date")
+            if "model_id" in row and row.get("model_id") not in candidate_ids:
+                issues.append(f"{label}:{line}: model_id absent from candidates")
+            seen.append(tuple(row.values()))
+        if len(seen) != len(set(seen)):
+            issues.append(f"{label}: exact duplicate source row")
+
+    if not 8 <= len(core_selection) <= 12:
+        issues.append(f"core_selection: expected 8-12 indicators, got {len(core_selection)}")
+    for line, row in enumerate(core_selection, start=2):
+        try:
+            best = int(row.get("best_comparable_models", ""))
+            total = int(row.get("final_models", ""))
+            coverage = float(row.get("coverage", "").rstrip("%"))
+        except ValueError:
+            issues.append(f"core_selection:{line}: invalid coverage fields")
+            continue
+        if total != len(final_ids) or best > total:
+            issues.append(f"core_selection:{line}: counts do not match final pool")
+        if abs(coverage - best / total * 100) > 0.11 or coverage < 75:
+            issues.append(f"core_selection:{line}: coverage must be accurate and >=75%")
+        if row.get("status") != "core":
+            issues.append(f"core_selection:{line}: status must be core")
+
+    core_keys = {row["indicator_key"] for row in processed["core_long"]}
+    if len(processed["core_matrix"]) != len(final_ids):
+        issues.append("core_matrix: must contain one row per final model")
+    if len(processed["core_long"]) != len(final_ids) * len(core_selection):
+        issues.append("core_long: must contain final_models x core_indicators rows")
+    if {row["model_id"] for row in processed["core_matrix"]} != final_ids:
+        issues.append("core_matrix: model ids do not match final pool")
+    if len(core_keys) != len(core_selection):
+        issues.append("core_long: indicator count does not match core selection")
+    if len(processed["indicator_quality"]) != len(core_selection):
+        issues.append("indicator_quality: must contain one row per core indicator")
+    for line, row in enumerate(processed["indicator_quality"], start=2):
+        try:
+            available = int(row.get("available_models", ""))
+            total = int(row.get("final_models", ""))
+            coverage = float(row.get("coverage_percent", ""))
+        except ValueError:
+            issues.append(f"indicator_quality:{line}: invalid coverage fields")
+            continue
+        if total != len(final_ids) or abs(coverage - available / total * 100) > 0.11:
+            issues.append(f"indicator_quality:{line}: inaccurate coverage")
+        if coverage < 75 or row.get("cohort_status") != "pass":
+            issues.append(f"indicator_quality:{line}: frozen cohort must pass 75%")
+    if len({(row["model_id"], row["indicator_key"]) for row in processed["core_long"]}) != len(processed["core_long"]):
+        issues.append("core_long: duplicate model/indicator row")
+    for line, row in enumerate(processed["core_long"], start=2):
+        if not numeric_or_na(row.get("score")):
+            issues.append(f"core_long:{line}: score must be numeric or literal NA")
+        if row.get("score") == "NA" and missing(row.get("missing_reason")):
+            issues.append(f"core_long:{line}: missing score requires a reason")
+        if (
+            row.get("model_id") == "glm-5.2"
+            and row.get("dimension") in {
+                "multimodal", "document_understanding",
+                "research_document_reasoning", "multimodal_math",
+            }
+            and row.get("missing_reason") != "not applicable: frozen model is text-only"
+        ):
+            issues.append(f"core_long:{line}: GLM visual gap must be marked structurally not applicable")
+    if len(processed["model_attributes"]) != len(final_ids):
+        issues.append("model_attributes: must contain one row per final model")
+    for line, row in enumerate(processed["model_attributes"], start=2):
+        if row.get("model_id") not in final_ids:
+            issues.append(f"model_attributes:{line}: model is not final")
+        if row.get("efficiency_compatible") == "false":
+            comparable = (
+                row.get("comparable_ttft_seconds"),
+                row.get("comparable_output_speed_tokens_per_second"),
+                row.get("comparable_total_latency_seconds"),
+            )
+            if any(value != "NA" for value in comparable):
+                issues.append(f"model_attributes:{line}: incompatible efficiency must be NA in comparable fields")
+    if any(row.get("status") != "pass" for row in processed["quality_report"]):
+        issues.append("quality_report: all Phase 2 checks must pass")
+
+    for label, keys in (("benchmark", benchmark_keys), ("metadata", metadata_keys), ("efficiency", efficiency_keys)):
+        for key, count in Counter(keys).items():
+            if count > 1:
+                issues.append(f"{label}: duplicate record key ({count} rows): {key}")
+    for model_name, model_versions in versions.items():
+        if len(model_versions) > 1:
+            issues.append(f"version mix: {model_name} has versions {sorted(model_versions)}")
+
+    row_count = len(candidates) + len(benchmarks) + len(metadata) + len(efficiency) + sum(map(len, source_tables.values())) + len(core_selection) + sum(map(len, processed.values()))
+    if issues:
+        print(f"Validation completed: {len(issues)} issue(s) across {row_count} row(s).")
+        print("\n".join(f"- {item}" for item in issues))
+        return 1
+    print(f"Validation passed: {row_count} data row(s), no issues found.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

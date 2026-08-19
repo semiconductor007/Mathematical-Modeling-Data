@@ -1,0 +1,6 @@
+﻿model_id,model,q1_rank,research_rank,dialogue_rank,coding_rank,research_rank_change,dialogue_rank_change,coding_rank_change,best_scenario,worst_scenario,rank_range,rank_std,scenario_sensitivity
+claude-fable-5,Claude Fable 5,1,2,1,1,1,0,0,大众日常通用对话、计算机代码开发,科研长文本分析,1,0.4330127018922193,场景敏感型
+kimi-k3,Kimi K3,2,1,2,2,-1,0,0,科研长文本分析,大众日常通用对话、计算机代码开发,1,0.4330127018922193,场景敏感型
+gpt-5.6-sol,GPT-5.6 Sol,3,3,3,3,0,0,0,科研长文本分析、大众日常通用对话、计算机代码开发,科研长文本分析、大众日常通用对话、计算机代码开发,0,0.0,场景稳定型
+gpt-5.5,GPT-5.5,4,4,4,4,0,0,0,科研长文本分析、大众日常通用对话、计算机代码开发,科研长文本分析、大众日常通用对话、计算机代码开发,0,0.0,场景稳定型
+claude-opus-4.8,Claude Opus 4.8,5,5,5,5,0,0,0,科研长文本分析、大众日常通用对话、计算机代码开发,科研长文本分析、大众日常通用对话、计算机代码开发,0,0.0,场景稳定型

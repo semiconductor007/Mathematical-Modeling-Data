@@ -1,0 +1,56 @@
+% !TeX program = xelatex
+\documentclass[UTF8,zihao=-4,a4paper]{ctexart}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{booktabs,tabularx,array,longtable,xurl,hyperref}
+\hypersetup{hidelinks,pdftitle={人工智能工具使用详情},pdfauthor={}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlength{\parindent}{2em}
+\linespread{1.2}
+\begin{document}
+\begin{center}
+{\heiti\zihao{2} 人工智能工具使用详情}
+\end{center}
+
+\section*{一、工具信息}
+\begingroup\small\setlength{\tabcolsep}{3pt}
+\noindent\begin{tabularx}{\textwidth}{p{2.3cm}p{3.0cm}p{3.0cm}Y}
+\toprule
+工具名称 & 版本/型号 & 开发机构/公司 & 使用日期 \\
+\midrule
+ChatGPT & GPT-5.6 Sol & OpenAI & 2026-08-16--2026-08-19 \\
+Codex & GPT-5.6 Sol & OpenAI & 2026-08-16--2026-08-19 \\
+\bottomrule
+\end{tabularx}
+\endgroup
+
+\section*{二、具体使用目的和环节}
+AI 工具用于代码调试、数据核验、来源一致性检查、论文结构检查、格式规范检查、可视化检查和部分语言表述优化。核心建模方案、指标筛选原则、正式数据取舍、数学公式、参数、计算结果、结果解释与最终结论均由参赛队员审阅和确认。AI 未被作为虚拟专家，未用于填补 GLM-5.2 缺失值，未用于伪造能耗数据或替代正式计算程序。
+
+\section*{三、关键交互记录}
+\subsection*{3.1 Codex 代表性交互（可由当前项目记录核对）}
+\begingroup\scriptsize\setlength{\tabcolsep}{2pt}
+\begin{longtable}{p{0.6cm}p{1.4cm}p{2.0cm}p{3.0cm}p{3.0cm}p{1.3cm}p{2.7cm}}
+\toprule
+序号 & 日期 & 使用目的 & 关键提示词摘要 & AI 回复摘要 & 采纳 & 人工修改/复核说明 \\
+\midrule
+\endfirsthead
+\toprule
+序号 & 日期 & 使用目的 & 关键提示词摘要 & AI 回复摘要 & 采纳 & 人工修改/复核说明 \\
+\midrule
+\endhead
+1 & 2026-08-16--17 & 数据与结果审计 & 核对最终模型池、九项指标、CRITIC、TOPSIS、场景、成本、效率与稳健性结果，不重新采集数据。 & 逐项读取冻结 CSV 与报告，形成事实核对清单并标出小样本、来源集中和效率覆盖边界。 & 是 & 队员以正式结果文件逐项复核；未改变模型与数据。 \\
+2 & 2026-08-17 & 能耗边界核验 & 仅处理算力消耗要求，禁止使用 TDP、FLOPs 或时延作为能耗代理排名。 & 确认缺少统一硬件、精度、batch 与推理设置下的可比公开能耗数据，只保留理论边界与限制说明。 & 是 & 队员确认不新增估算值，不形成能耗排名。 \\
+3 & 2026-08-17--18 & 模型结果复核 & 复核 CRITIC/TOPSIS、场景组合系数敏感性和跨场景机理，不重新计算或更改正式排名。 & 对照冻结结果说明科研场景榜首切换区间及日常对话、代码开发的稳定性，使用克制的小样本表述。 & 是 & 队员核对数值、排名和文字适用范围。 \\
+4 & 2026-08-18--19 & 论文终稿与插图检查 & 审计匿名性、引用、术语、图题和版式；仅吸收可追溯且无插补的旧稿内容。 & 修复内部路径与术语；验证 Kimi 雷达图维度映射、完整样本均值和无插补条件后统一绘图。 & 是 & 队员确认雷达图不参与赋权和排名，模型结果保持冻结。 \\
+5 & 2026-08-19 & 正式提交合规 & 按官方参赛须知、格式规范和 AI 工具规定整改目录、页眉、附录、支撑材料和 AI 披露。 & 建立目录、控制号宏、AI 位置标注、支撑材料清单、完整代码附录与干净复现包，并执行编译和匿名扫描。 & 是 & 控制号仍需队长提供；正式提交前由队员完成行政信息确认。 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\subsection*{3.2 ChatGPT 关键交互（待用户补充）}
+当前本地环境无法取得 ChatGPT 平台的原始会话记录。为避免虚构提示词或回复，本节暂不填写具体交互。请依据同目录 \texttt{AI\_CHATGPT\_RECORDS\_NEED\_USER.txt} 补充真实记录后，再将本文件作为最终 AI 详情提交。
+
+\section*{四、采纳和人工修改情况}
+AI 建议并非自动采纳。正式数据、公式、权重、排名、图表数据和结论均由队员依据冻结数据与正式程序复核。审计过程中发现旧数据口径、旧内部路径或表述范围过宽时，均由队员人工纠正。能耗代理估计、虚拟专家意见、GLM 缺失值插补、旧覆盖率倒推和其他无法由冻结证据支持的建议均未采纳。所有最终模型结果均以正式程序重新运行或验证的输出为准。
+
+\end{document}

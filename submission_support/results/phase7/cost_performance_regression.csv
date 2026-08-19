@@ -1,0 +1,2 @@
+model,n,intercept,slope_log_cost,r_squared,interpretation
+performance = intercept + slope * ln(cost),5,0.1994080820,0.1481037375,0.3146723881,exploratory only; n=5 is too small for causal inference

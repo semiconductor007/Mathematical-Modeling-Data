@@ -1,0 +1,24 @@
+Benchmark,Raw,Comparable,Total,Raw coverage,Comparable coverage,Missing from best cohort,Best comparable cohort
+AA-LCR,6,6,6,100.0%,100.0%,-,AA Intelligence Index snapshot 2026-07-23 | Artificial Analysis unified evaluation as cited by K3 report; snapshot 2026-07-23
+Agents' Last Exam,6,0,6,100.0%,0.0%,"claude-fable-5, claude-opus-4.8, glm-5.2, gpt-5.5, gpt-5.6-sol, kimi-k3",none
+CharXiv RQ (no tools),5,5,6,83.3%,83.3%,glm-5.2,K3 report protocol | K3 report multimodal protocol; average of three runs; no tools
+CharXiv RQ (with Python),5,5,6,83.3%,83.3%,glm-5.2,K3 report protocol | K3 report multimodal protocol; average of three runs; Python tools
+DeepSWE,4,0,6,66.7%,0.0%,"claude-fable-5, claude-opus-4.8, glm-5.2, gpt-5.5, gpt-5.6-sol, kimi-k3",none
+FrontierMath Tier 1-3,4,4,6,66.7%,66.7%,"glm-5.2, kimi-k3",v2 | OpenAI launch comparison; model-appropriate high/max reasoning; no tool result indicated
+FrontierMath Tier 4,4,4,6,66.7%,66.7%,"glm-5.2, kimi-k3",v2 | OpenAI launch comparison; model-appropriate high/max reasoning; no tool result indicated
+FrontierSWE,6,0,6,100.0%,0.0%,"claude-fable-5, claude-opus-4.8, glm-5.2, gpt-5.5, gpt-5.6-sol, kimi-k3",none
+GDPval-AA v2,6,6,6,100.0%,100.0%,-,AA snapshot 2026-07-23 | Artificial Analysis unified leaderboard as cited by K3 report; human baseline=1000
+GPQA Diamond,6,6,6,100.0%,100.0%,-,2023 release / Diamond subset | K3 report: highest disclosed effort; no tools; temperature=1.0; top_p=0.95
+GraphWalks BFS 1M,3,3,6,50.0%,50.0%,"claude-fable-5, glm-5.2, kimi-k3",OpenAI launch protocol | 1M long-context graph traversal; OpenAI launch comparison
+GraphWalks BFS 256K,3,3,6,50.0%,50.0%,"claude-fable-5, glm-5.2, kimi-k3",OpenAI launch protocol | 256K long-context graph traversal; OpenAI launch comparison
+HLE-Full (no tools),6,5,6,100.0%,83.3%,glm-5.2,HLE-Full | K3 report: first value; no tools; highest disclosed effort; temperature=1.0; top_p=0.95
+HLE-Full (with tools),6,5,6,100.0%,83.3%,glm-5.2,HLE-Full | K3 report: second value; general tool augmentation; highest disclosed effort
+MMMU-Pro (no tools),5,5,6,83.3%,83.3%,glm-5.2,official protocol | Official protocol; original input order; image prepended; three-run average; no tools
+MMMU-Pro (with Python),5,5,6,83.3%,83.3%,glm-5.2,official protocol | Official protocol; three-run average; Python tool augmentation
+MathVision (no tools),5,5,6,83.3%,83.3%,glm-5.2,K3 report protocol | K3 report multimodal protocol; average of three runs; no tools
+MathVision (with Python),5,5,6,83.3%,83.3%,glm-5.2,K3 report protocol | K3 report multimodal protocol; average of three runs; Python tools
+OfficeQA Pro,6,0,6,100.0%,0.0%,"claude-fable-5, claude-opus-4.8, glm-5.2, gpt-5.5, gpt-5.6-sol, kimi-k3",none
+OmniDocBench,5,5,6,83.3%,83.3%,glm-5.2,K3 report protocol | K3 report multimodal protocol; average of three runs; no tools
+SWE-Bench Pro,4,0,6,66.7%,0.0%,"claude-fable-5, claude-opus-4.8, glm-5.2, gpt-5.5, gpt-5.6-sol, kimi-k3",none
+SciCode,6,6,6,100.0%,100.0%,-,AA snapshot 2026-07-23 | Artificial Analysis unified evaluation as cited by K3 report; snapshot 2026-07-23
+Terminal-Bench,6,0,6,100.0%,0.0%,"claude-fable-5, claude-opus-4.8, glm-5.2, gpt-5.5, gpt-5.6-sol, kimi-k3",none

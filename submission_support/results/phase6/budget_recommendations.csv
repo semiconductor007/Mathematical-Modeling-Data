@@ -1,0 +1,6 @@
+budget_usd_per_standardized_workload,feasible_ranked_models,recommended_model_id,recommended_model_name,performance_score,cost_usd,rule
+6.00,2,kimi-k3,Kimi K3,0.5933487598,6.0000,highest general TOPSIS score within budget; no missing-score model considered
+10.00,3,kimi-k3,Kimi K3,0.5933487598,6.0000,highest general TOPSIS score within budget; no missing-score model considered
+12.00,4,kimi-k3,Kimi K3,0.5933487598,6.0000,highest general TOPSIS score within budget; no missing-score model considered
+16.00,4,kimi-k3,Kimi K3,0.5933487598,6.0000,highest general TOPSIS score within budget; no missing-score model considered
+20.00,5,claude-fable-5,Claude Fable 5,0.7253547227,20.0000,highest general TOPSIS score within budget; no missing-score model considered
